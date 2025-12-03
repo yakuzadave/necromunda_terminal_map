@@ -1,0 +1,365 @@
+:root {
+    --phosphor-primary: #33ff00;
+    --phosphor-dim: #1a8000;
+    --phosphor-bright: #ccffcc;
+    --bg-color: #050505;
+    --scanline-color: rgba(0, 0, 0, 0.5);
+    --glass-reflection: rgba(255, 255, 255, 0.02);
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'VT323', monospace;
+    color: var(--phosphor-primary);
+    overflow: hidden;
+}
+
+/* CRT Monitor Container */
+.crt-container {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 1200px;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    box-shadow:
+        0 0 20px rgba(51, 255, 0, 0.1),
+        inset 0 0 100px rgba(0, 0, 0, 0.9);
+    border: 2px solid #333;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Screen Effects */
+.crt-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        var(--scanline-color) 50%,
+        var(--scanline-color)
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+    border-radius: 18px;
+    animation: flicker 0.15s infinite;
+}
+
+.crt-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 50px rgba(51, 255, 0, 0.1);
+    pointer-events: none;
+    z-index: 11;
+    border-radius: 18px;
+}
+
+.scan-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(51, 255, 0, 0.1);
+    position: absolute;
+    z-index: 12;
+    top: -10px;
+    animation: scan 8s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Layout */
+header {
+    border-bottom: 2px solid var(--phosphor-dim);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-shadow: 0 0 5px var(--phosphor-dim);
+    z-index: 5;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.meta-data {
+    text-align: right;
+    font-size: 1rem;
+    color: var(--phosphor-dim);
+}
+
+.main-display {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+/* Map Area */
+.map-frame {
+    flex: 2;
+    border: 1px solid var(--phosphor-dim);
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 20, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#battle-map {
+    display: grid;
+    font-family: 'Courier New', monospace;
+    font-family: 'VT323', monospace;
+    line-height: 1;
+    white-space: pre;
+    cursor: crosshair;
+    user-select: none;
+    font-size: 1.2rem;
+}
+
+.cell {
+    display: inline-block;
+    width: 1ch;
+    text-align: center;
+    transition: all 0.1s;
+}
+
+.cell:hover {
+    background-color: var(--phosphor-primary);
+    color: #000 !important;
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--phosphor-primary);
+    z-index: 2;
+    position: relative;
+}
+
+.cell.selected {
+    background-color: #fff !important;
+    color: #000 !important;
+    animation: blink-select 1s infinite;
+    box-shadow: 0 0 15px #fff;
+    z-index: 3;
+    position: relative;
+}
+
+@keyframes blink-select {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 250px;
+}
+
+.panel {
+    border: 1px solid var(--phosphor-dim);
+    padding: 10px;
+    background: rgba(0, 10, 0, 0.3);
+}
+
+.panel-header {
+    background: var(--phosphor-dim);
+    color: #000;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin: -10px -10px 10px -10px;
+    text-transform: uppercase;
+}
+
+#info-panel {
+    flex: 1;
+    overflow-y: auto;
+}
+
+#controls {
+    display: flex;
+    gap: 10px;
+}
+
+button, select.scenario-dropdown {
+    background: transparent;
+    border: 1px solid var(--phosphor-primary);
+    color: var(--phosphor-primary);
+    font-family: 'VT323', monospace;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+select.scenario-dropdown {
+    width: 100%;
+    text-transform: none;
+    background-color: rgba(0, 20, 0, 0.6);
+}
+
+select.scenario-dropdown option {
+    background-color: #000;
+    color: var(--phosphor-primary);
+}
+
+button:hover, select.scenario-dropdown:hover {
+    background: var(--phosphor-primary);
+    color: #000;
+    box-shadow: 0 0 10px var(--phosphor-dim);
+}
+
+/* Legend */
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.symbol {
+    width: 20px;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Colors for Map Entities */
+.terrain-wall {
+    color: #2ecc71;
+    text-shadow: 0 0 2px #2ecc71;
+}
+
+.terrain-floor {
+    color: #0a3300;
+    opacity: 0.5;
+}
+
+.terrain-rubble {
+    color: #889900;
+}
+
+.terrain-hazard {
+    color: #adff2f;
+    animation: wave 2s infinite linear;
+    font-weight: bold;
+}
+
+.terrain-fungal {
+    color: #9acd32;
+    background-color: rgba(154, 205, 50, 0.1);
+    animation: fungal-pulse 3s infinite;
+    font-weight: bold;
+    text-shadow: 0 0 3px #9acd32;
+}
+
+@keyframes fungal-pulse {
+    0%, 100% {
+        opacity: 0.7;
+        text-shadow: 0 0 3px #9acd32;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 8px #9acd32, 0 0 12px #556b2f;
+    }
+}
+
+/* Units - Inverted Chips style */
+.unit-attacker {
+    background-color: #ff3333;
+    color: #000;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #ff3333;
+    cursor: pointer;
+}
+
+.unit-defender {
+    background-color: #00ffff;
+    color: #000;
+    font-weight: bold;
+    border-radius: 2px;
+    box-shadow: 0 0 5px #00ffff;
+    cursor: pointer;
+}
+
+.obj-marker {
+    color: #ffffff;
+    animation: pulse 1s infinite;
+}
+
+/* Animations */
+@keyframes flicker {
+    0% { opacity: 0.95; }
+    5% { opacity: 0.85; }
+    10% { opacity: 0.95; }
+    100% { opacity: 0.95; }
+}
+
+@keyframes scan {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+@keyframes wave {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; text-shadow: 0 0 8px #adff2f; }
+    100% { opacity: 0.6; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--phosphor-dim);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--phosphor-primary);
+}
+
+.typing-cursor::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}

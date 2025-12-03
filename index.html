@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Necromunda Tactical Auspex - The Marauders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="crt-container">
+    <div class="crt-overlay"></div>
+    <div class="crt-glow"></div>
+    <div class="scan-bar"></div>
+
+    <header>
+        <div>
+            <h1>Sector 9-Z // The Marauders</h1>
+            <div style="font-size: 0.8rem; opacity: 0.7;">Zone Mortalis Configuration</div>
+        </div>
+        <div class="meta-data">
+            <div>DATE: 994.M41</div>
+            <div>AUSPEX: ONLINE</div>
+            <div>STATUS: INCURSION</div>
+        </div>
+    </header>
+
+    <div class="main-display">
+        <div class="map-frame">
+            <div id="battle-map"></div>
+        </div>
+
+        <div class="sidebar">
+            <div class="panel" style="flex: 0 0 auto;">
+                <div class="panel-header">Mission Select</div>
+                <select id="scenario-select" class="scenario-dropdown">
+                    <option value="random">Random Ambush</option>
+                    <option value="bushwhack">Bushwhack</option>
+                    <option value="scrag">Scrag</option>
+                    <option value="mayhem">Mayhem</option>
+                    <option value="manufactorumRaid">Manufactorum Raid</option>
+                    <option value="conveyer">The Conveyer</option>
+                    <option value="fungalHorror">Fungal Horror</option>
+                </select>
+            </div>
+
+            <div class="panel" style="flex: 0 0 auto;">
+                <div class="panel-header">Tactical Legend</div>
+                <div class="legend-item"><span class="symbol unit-attacker">M</span> Marauder (Attacker)</div>
+                <div class="legend-item"><span class="symbol unit-defender">G</span> Garrison (Defender)</div>
+                <div class="legend-item"><span class="symbol terrain-wall">╬</span> Bulkhead Structure</div>
+                <div class="legend-item"><span class="symbol terrain-rubble">▒</span> Debris (Light Cover)</div>
+                <div class="legend-item"><span class="symbol terrain-hazard">≈</span> Chem-Pit (Hazard)</div>
+                <div class="legend-item"><span class="symbol obj-marker">⊗/◆</span> Objective/Loot</div>
+                <div class="legend-item"><span class="symbol terrain-fungal">▓</span> Fungal Overgrowth</div>
+            </div>
+
+            <div class="panel" id="info-panel">
+                <div class="panel-header">Cogitator Feed</div>
+                <div id="status-text" class="typing-cursor">System Ready.</div>
+            </div>
+
+            <div class="panel" id="controls">
+                <button onclick="startNewBattle()">New Battle</button>
+                <button onclick="mapSystem.endRound()">End Round</button>
+                <button onclick="mapSystem.toggleOverlay()">Vis-Mode</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { SCENARIOS } from './scenarios.js';
+    import { TacticalMap, mapSystem } from './app.js';
+    
+    // Expose to window for inline scripts and onclick handlers
+    window.SCENARIOS = SCENARIOS;
+    window.mapSystem = mapSystem;
+</script>
+<script>
+    function startNewBattle() {
+        const select = document.getElementById('scenario-select');
+        const scenario = select.value === 'random' ? null : select.value;
+        mapSystem.generate(scenario);
+    }
+</script>
+
+</body>
+</html>
