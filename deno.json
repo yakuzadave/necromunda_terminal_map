@@ -2,14 +2,23 @@
   "tasks": {
     "dev": "deno run --allow-net --allow-read --watch server.ts",
     "start": "deno run --allow-net --allow-read server.ts",
-    "test": "deno test --allow-read --allow-env"
+    "test": "deno test --allow-read --allow-env",
+    "test:e2e": "npx playwright test",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:e2e:ui": "npx playwright test --ui",
+    "playwright:install": "deno run -A npm:playwright install",
+    "test:all": "deno task test && deno task test:e2e"
   },
   "compilerOptions": {
     "lib": [
+      "deno.ns",
       "deno.window",
       "dom",
       "dom.iterable"
     ],
     "strict": true
+  },
+  "imports": {
+    "@playwright/test": "npm:@playwright/test@^1.40.0"
   }
 }

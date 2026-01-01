@@ -192,6 +192,53 @@ scenarioName: {
 }
 ```
 
+## Testing
+
+This project includes comprehensive automated testing using Playwright for end-to-end browser testing.
+
+### Quick Start
+
+Install Playwright browsers (first time only):
+```bash
+deno task playwright:install
+```
+
+Run all E2E tests:
+```bash
+deno task test:e2e
+```
+
+Run tests with visible browser:
+```bash
+deno task test:e2e:headed
+```
+
+Run tests with interactive UI:
+```bash
+deno task test:e2e:ui
+```
+
+Run all tests (unit + E2E):
+```bash
+deno task test:all
+```
+
+### Test Coverage
+
+- ✅ **Scenario Loading**: All scenarios generate correctly
+- ✅ **Unit Interactions**: Selection, movement, and hover info
+- ✅ **Bomb Mechanics**: Plant, disarm, rearm, and detonation
+- ✅ **Platform Movement**: Descent mechanics and unit tracking
+- ✅ **Fungal Spread**: Growth patterns and overgrowth marking
+- ✅ **Visual Effects**: CRT styling, animations, and responsive design
+- ✅ **Cross-Browser**: Chrome, Firefox, Safari (desktop + mobile)
+
+See [PLAYWRIGHT_TESTING.md](PLAYWRIGHT_TESTING.md) for complete testing documentation.
+
+### CI/CD
+
+Tests run automatically on every push and pull request via GitHub Actions. Results and artifacts (screenshots, videos) are uploaded on failure.
+
 ## Future Enhancements
 
 Potential features to add:

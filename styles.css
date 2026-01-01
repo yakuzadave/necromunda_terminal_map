@@ -1,5 +1,5 @@
 :root {
-    --phosphor-primary: #33ff00;
+    --phosphor-primary: #88db74;
     --phosphor-dim: #1a8000;
     --phosphor-bright: #ccffcc;
     --bg-color: #050505;
@@ -136,6 +136,7 @@ h1 {
     line-height: 1;
     white-space: pre;
     cursor: crosshair;
+    -webkit-user-select: none;
     user-select: none;
     font-size: 1.2rem;
 }
@@ -362,4 +363,19 @@ button:hover, select.scenario-dropdown:hover {
 
 @keyframes blink {
     50% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+    .main-display {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        min-width: 100%;
+        height: 200px;
+    }
+
+    .map-frame {
+        height: 50vh;
+    }
 }

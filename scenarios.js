@@ -22,7 +22,7 @@ export const SCENARIOS = {
         setup: (map) => {
             map.log("OBJECTIVE: BUSHWHACK<br>Eliminate enemy leaders and high-value targets.");
         },
-        victory: (map) => {
+        checkVictory: (map) => {
             // Check if leaders are down
             return "Victory conditions: Eliminate all defenders or bottle out";
         }
@@ -52,7 +52,7 @@ export const SCENARIOS = {
                 target.desc = "Priority Target [!]";
             }
         },
-        victory: (map) => {
+        checkVictory: (map) => {
             const target = map.getUnitsByType('G').find(u => u.priority);
             return target ? "Priority target still active" : "VICTORY: Target eliminated!";
         }
@@ -75,7 +75,7 @@ export const SCENARIOS = {
         setup: (map) => {
             map.log("OBJECTIVE: MAYHEM<br>Inflict maximum casualties and escape via deployment edge.");
         },
-        victory: (map) => {
+        checkVictory: (map) => {
             return "Victory: Most casualties inflicted and successful extraction";
         }
     },
@@ -657,6 +657,111 @@ export const SCENARIOS = {
                 victory: "D3 Reputation if survived",
                 experience: "1 XP per fighter"
             }
+        }
+    },
+
+    tollBridge: {
+        name: "Toll Bridge",
+        description: "Control the bridge over the toxic river",
+        source: "The Book of Peril, p86",
+        attacker: {
+            deployment: "standard",
+            count: 10,
+            objective: "Control the bridge"
+        },
+        defender: {
+            deployment: "standard",
+            count: 10,
+            objective: "Control the bridge"
+        },
+        rules: {
+            toxicRiver: true,
+            bridgePivot: true,
+            maxRounds: 10 // Arbitrary limit for game end check if not specified
+        },
+        setup: (map) => {
+            map.log("SCENARIO: TOLL BRIDGE<br>Control the bridge spanning the toxic river!");
+            map.generateTollBridge();
+        },
+        endPhase: (map) => {
+            // Bridge Pivot Logic (Round 3+)
+            if (map.round >= 3) {
+                const roll = map.rand(1, 6);
+                map.log(`Bridge Mechanism: Rolled ${roll}`);
+
+                if (roll === 5) {
+                    map.pivotBridge('right');
+                } else if (roll === 6) {
+                    map.pivotBridge('left');
+                } else {
+                    map.log("The bridge remains stationary.");
+                }
+            }
+        },
+        checkVictory: (map) => {
+            // Check if one gang has fighters within 12" (approx 6 cells) of center
+            // and opponent does not.
+            const center = { x: Math.floor(map.width / 2), y: Math.floor(map.height / 2) };
+            const radius = 6;
+
+            const attackers = map.getUnitsByType('M');
+            const defenders = map.getUnitsByType('G');
+
+            const attackersOnBridge = attackers.filter(u => {
+                const dist = Math.sqrt(Math.pow(u.x - center.x, 2) + Math.pow(u.y - center.y, 2));
+                return dist <= radius;
+            });
+
+            const defendersOnBridge = defenders.filter(u => {
+                const dist = Math.sqrt(Math.pow(u.x - center.x, 2) + Math.pow(u.y - center.y, 2));
+                return dist <= radius;
+            });
+
+            // Game ends if no fighters on board (simplified check)
+            if (attackers.length === 0 && defenders.length === 0) {
+                return {
+                    ended: true,
+                    winner: "draw",
+                    message: "All fighters eliminated! DRAW!"
+                };
+            }
+
+            // Check victory condition after round 3 (or just check every round as per rules "Ending the Battle")
+            // Rules: "If either player has no fighters on the board at the end of a round... or if after round 3..."
+
+            if (map.round >= 3) {
+                if (attackersOnBridge.length > 0 && defendersOnBridge.length === 0) {
+                    return {
+                        ended: true,
+                        winner: "attacker",
+                        message: "Attackers control the bridge! VICTORY!"
+                    };
+                } else if (defendersOnBridge.length > 0 && attackersOnBridge.length === 0) {
+                    return {
+                        ended: true,
+                        winner: "defender",
+                        message: "Defenders control the bridge! VICTORY!"
+                    };
+                }
+            }
+
+            if (attackers.length === 0) {
+                return {
+                    ended: true,
+                    winner: "defender",
+                    message: "Attackers eliminated! Defender Victory!"
+                };
+            }
+
+            if (defenders.length === 0) {
+                return {
+                    ended: true,
+                    winner: "attacker",
+                    message: "Defenders eliminated! Attacker Victory!"
+                };
+            }
+
+            return { ended: false };
         }
     }
 };

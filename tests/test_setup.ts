@@ -1,22 +1,41 @@
-import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
+import { DOMParser, Element } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
+
+if (!Element.prototype.style) {
+  Object.defineProperty(Element.prototype, "style", {
+    get() {
+      if (!this._style) {
+        this._style = new Proxy({}, {
+          set: (target: any, prop, value) => {
+            target[prop] = value;
+            return true;
+          },
+          get: (target: any, prop) => {
+            return target[prop] || "";
+          }
+        });
+      }
+      return this._style;
+    }
+  });
+}
 
 // Mock global document
 const doc = new DOMParser().parseFromString(
-    `<!DOCTYPE html>
+  `<!DOCTYPE html>
   <html>
     <body>
       <div id="battle-map"></div>
       <div id="status-text"></div>
     </body>
   </html>`,
-    "text/html",
+  "text/html",
 );
 
 if (doc) {
-    // @ts-ignore: Deno global augmentation
-    globalThis.document = doc;
-    // @ts-ignore: Deno global augmentation
-    globalThis.window = globalThis;
+  // @ts-ignore: Deno global augmentation
+  globalThis.document = doc;
+  // @ts-ignore: Deno global augmentation
+  globalThis.window = globalThis;
 }
 
 // Mock SCENARIOS global if needed, or import it

@@ -1,0 +1,915 @@
+
+Running 315 tests using 12 workers
+
+  ✓    8 [chromium] › tests\e2e\scenario-loading.spec.ts:17:7 › Scenario Loading › should load the page with correct title (4.0s)
+  ✓   10 [chromium] › tests\e2e\scenario-loading.spec.ts:26:7 › Scenario Loading › should have scenario dropdown with all scenarios (4.1s)
+  ✓    9 [chromium] › tests\e2e\scenario-loading.spec.ts:21:7 › Scenario Loading › should display header with gang name (4.5s)
+  ✓   12 [chromium] › tests\e2e\scenario-loading.spec.ts:41:7 › Scenario Loading › should display legend with all terrain types (4.6s)
+  ✓   11 [chromium] › tests\e2e\scenario-loading.spec.ts:51:7 › Scenario Loading › should have control buttons (6.1s)
+  ✓   14 [chromium] › tests\e2e\scenario-loading.spec.ts:68:7 › Scenario Loading › should display cogitator feed (3.6s)
+  ✓    3 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture The Conveyer (8.1s)
+  ✓    2 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Scrag (8.3s)
+  ✓    7 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Manufactorum Raid (7.9s)
+  ✓    1 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Bushwhack (8.3s)
+  ✓    6 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Fungal Horror (8.2s)
+  ✓    4 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Mayhem (8.2s)
+  ✓   13 [chromium] › tests\e2e\scenario-loading.spec.ts:57:7 › Scenario Loading › should auto-generate map on load (4.3s)
+  ✓   16 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate SCRAG scenario (8.6s)
+  ✓   15 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate BUSHWHACK scenario (8.9s)
+  ✓   21 [chromium] › tests\e2e\scenario-loading.spec.ts:112:7 › Scenario Generation › should generate random ambush scenario (5.6s)
+  ✓   22 [chromium] › tests\e2e\scenario-mechanics.spec.ts:22:7 › Manufactorum Raid - Bomb Mechanics › should display 3 bomb markers (5.7s)
+  ✓   17 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MAYHEM scenario (7.5s)
+  ✓   18 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MANUFACTORUM RAID scenario (5.9s)
+  ✓   19 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate CONVEYER scenario (5.8s)
+  ✓   20 [chromium] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate FUNGAL HORROR scenario (5.8s)
+  ✓   25 [chromium] › tests\e2e\scenario-mechanics.spec.ts:49:7 › Manufactorum Raid - Bomb Mechanics › should show scenario name in status (5.6s)
+  ✓   23 [chromium] › tests\e2e\scenario-mechanics.spec.ts:28:7 › Manufactorum Raid - Bomb Mechanics › should show bomb information on hover (5.9s)
+  ✓   24 [chromium] › tests\e2e\scenario-mechanics.spec.ts:38:7 › Manufactorum Raid - Bomb Mechanics › should update status on end round (6.7s)
+  ✓   27 [chromium] › tests\e2e\scenario-mechanics.spec.ts:73:7 › The Conveyer - Platform Mechanics › should display loot caskets (6.4s)
+  ✓   31 [chromium] › tests\e2e\scenario-mechanics.spec.ts:127:7 › Fungal Horror - Growth Mechanics › should show fungal marker in status (6.3s)
+  ✓   28 [chromium] › tests\e2e\scenario-mechanics.spec.ts:79:7 › The Conveyer - Platform Mechanics › should show platform cells with [PLATFORM] tag on hover (6.5s)
+  ✓   29 [chromium] › tests\e2e\scenario-mechanics.spec.ts:97:7 › The Conveyer - Platform Mechanics › should show platform movement on end round (6.5s)
+  ✓   30 [chromium] › tests\e2e\scenario-mechanics.spec.ts:118:7 › Fungal Horror - Growth Mechanics › should display fungal overgrowth (6.5s)
+  ✓   26 [chromium] › tests\e2e\scenario-mechanics.spec.ts:67:7 › The Conveyer - Platform Mechanics › should display platform area (6.9s)
+  ✓   32 [chromium] › tests\e2e\scenario-mechanics.spec.ts:132:7 › Fungal Horror - Growth Mechanics › should show overgrown area on hover (6.6s)
+  ✓   33 [chromium] › tests\e2e\scenario-mechanics.spec.ts:144:7 › Fungal Horror - Growth Mechanics › should process fungal spread on end round (6.7s)
+  ✓   35 [chromium] › tests\e2e\scenario-mechanics.spec.ts:185:7 › Round Management › should allow multiple rounds (6.8s)
+  ✓   34 [chromium] › tests\e2e\scenario-mechanics.spec.ts:170:7 › Round Management › should increment round counter on end round (7.2s)
+  ✓   36 [chromium] › tests\e2e\scenario-mechanics.spec.ts:209:7 › Priority Target (Scrag) › should mark priority target (6.3s)
+  ✓   38 [chromium] › tests\e2e\unit-interactions.spec.ts:21:7 › Unit Interactions › should display unit information on hover (6.9s)
+  ✓   47 [chromium] › tests\e2e\visual-regression.spec.ts:17:7 › Visual Effects › should display CRT overlay effects (5.8s)
+  ✓   43 [chromium] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections (6.7s)
+  ✓   41 [chromium] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover (6.9s)
+  ✓   39 [chromium] › tests\e2e\unit-interactions.spec.ts:38:7 › Unit Interactions › should select unit on click (7.0s)
+  ✓   40 [chromium] › tests\e2e\unit-interactions.spec.ts:51:7 › Unit Interactions › should deselect unit on second click (7.0s)
+  ✓   37 [chromium] › tests\e2e\scenario-mechanics.spec.ts:214:7 › Priority Target (Scrag) › should show priority target marker on hover (7.3s)
+  ✓   42 [chromium] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover (7.0s)
+  ✓   45 [chromium] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile (6.5s)
+  ✓   44 [chromium] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected (7.0s)
+  ✓   46 [chromium] › tests\e2e\unit-interactions.spec.ts:175:7 › Visual Modes › should toggle visualization mode (6.2s)
+  ✓   52 [chromium] › tests\e2e\visual-regression.spec.ts:70:7 › Responsive Design › should render on desktop viewport (3.9s)
+  ✓   54 [chromium] › tests\e2e\visual-regression.spec.ts:88:7 › Responsive Design › should render on mobile viewport (4.0s)
+  ✓   53 [chromium] › tests\e2e\visual-regression.spec.ts:79:7 › Responsive Design › should render on tablet viewport (4.1s)
+  ✓   51 [chromium] › tests\e2e\visual-regression.spec.ts:56:7 › Visual Effects › should have proper cell sizing (4.2s)
+  ✓   50 [chromium] › tests\e2e\visual-regression.spec.ts:47:7 › Visual Effects › should render map in grid layout (4.3s)
+  ✓   57 [chromium] › tests\e2e\visual-regression.spec.ts:143:7 › Color Coding › should have hazard warning colors (4.0s)
+  ✓   48 [chromium] › tests\e2e\visual-regression.spec.ts:28:7 › Visual Effects › should have monospace font for terminal effect (4.4s)
+  ✓   49 [chromium] › tests\e2e\visual-regression.spec.ts:37:7 › Visual Effects › should have green phosphor color scheme (4.4s)
+  ✓   55 [chromium] › tests\e2e\visual-regression.spec.ts:105:7 › Color Coding › should have distinct colors for attackers and defenders (4.3s)
+  ✘    5 [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge (31.3s)
+  ✓   58 [chromium] › tests\e2e\visual-regression.spec.ts:165:7 › Terrain Symbols › should render box-drawing characters for walls (4.2s)
+  ✓   56 [chromium] › tests\e2e\visual-regression.spec.ts:123:7 › Color Coding › should highlight selected units (4.4s)
+  ✓   61 [chromium] › tests\e2e\visual-regression.spec.ts:219:7 › Animations › should have scan bar animation (2.3s)
+  ✓   63 [chromium] › tests\e2e\visual-regression.spec.ts:243:7 › Animations › should have fungal pulse animation (2.9s)
+  ✓   62 [chromium] › tests\e2e\visual-regression.spec.ts:230:7 › Animations › should have typing cursor animation on status text (3.8s)
+  ✓   59 [chromium] › tests\e2e\visual-regression.spec.ts:180:7 › Terrain Symbols › should render special symbols for objectives (4.4s)
+  ✓   60 [chromium] › tests\e2e\visual-regression.spec.ts:199:7 › Terrain Symbols › should render fungal overgrowth with correct symbol (4.4s)
+  ✓   71 [firefox] › tests\e2e\scenario-loading.spec.ts:17:7 › Scenario Loading › should load the page with correct title (4.4s)
+  ✓   65 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Mayhem (8.5s)
+  ✓   68 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Manufactorum Raid (8.7s)
+  ✓   67 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Bushwhack (8.7s)
+  ✓   72 [firefox] › tests\e2e\scenario-loading.spec.ts:21:7 › Scenario Loading › should display header with gang name (5.2s)
+  ✓   69 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Fungal Horror (8.7s)
+  ✓   75 [firefox] › tests\e2e\scenario-loading.spec.ts:41:7 › Scenario Loading › should display legend with all terrain types (5.3s)
+  ✓   77 [firefox] › tests\e2e\scenario-loading.spec.ts:68:7 › Scenario Loading › should display cogitator feed (2.8s)
+  ✓   64 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture The Conveyer (8.9s)
+  ✓   66 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Scrag (8.9s)
+  ✓   74 [firefox] › tests\e2e\scenario-loading.spec.ts:51:7 › Scenario Loading › should have control buttons (5.8s)
+  ✓   76 [firefox] › tests\e2e\scenario-loading.spec.ts:57:7 › Scenario Loading › should auto-generate map on load (4.9s)
+  ✓   73 [firefox] › tests\e2e\scenario-loading.spec.ts:26:7 › Scenario Loading › should have scenario dropdown with all scenarios (5.8s)
+  ✓   80 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MAYHEM scenario (5.2s)
+  ✓   78 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate BUSHWHACK scenario (6.3s)
+  ✓   79 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate SCRAG scenario (6.2s)
+  ✓   82 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate CONVEYER scenario (5.2s)
+  ✓   83 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate FUNGAL HORROR scenario (5.1s)
+  ✓   81 [firefox] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MANUFACTORUM RAID scenario (6.0s)
+  ✓   84 [firefox] › tests\e2e\scenario-loading.spec.ts:112:7 › Scenario Generation › should generate random ambush scenario (5.7s)
+  ✓   85 [firefox] › tests\e2e\scenario-mechanics.spec.ts:22:7 › Manufactorum Raid - Bomb Mechanics › should display 3 bomb markers (5.8s)
+  ✓   86 [firefox] › tests\e2e\scenario-mechanics.spec.ts:28:7 › Manufactorum Raid - Bomb Mechanics › should show bomb information on hover (6.1s)
+  ✓   87 [firefox] › tests\e2e\scenario-mechanics.spec.ts:38:7 › Manufactorum Raid - Bomb Mechanics › should update status on end round (6.4s)
+  ✓   88 [firefox] › tests\e2e\scenario-mechanics.spec.ts:49:7 › Manufactorum Raid - Bomb Mechanics › should show scenario name in status (5.8s)
+  ✓   89 [firefox] › tests\e2e\scenario-mechanics.spec.ts:67:7 › The Conveyer - Platform Mechanics › should display platform area (5.9s)
+  ✓   90 [firefox] › tests\e2e\scenario-mechanics.spec.ts:73:7 › The Conveyer - Platform Mechanics › should display loot caskets (5.5s)
+  ✓   93 [firefox] › tests\e2e\scenario-mechanics.spec.ts:118:7 › Fungal Horror - Growth Mechanics › should display fungal overgrowth (5.1s)
+  ✓   94 [firefox] › tests\e2e\scenario-mechanics.spec.ts:127:7 › Fungal Horror - Growth Mechanics › should show fungal marker in status (5.4s)
+  ✓   92 [firefox] › tests\e2e\scenario-mechanics.spec.ts:97:7 › The Conveyer - Platform Mechanics › should show platform movement on end round (6.2s)
+  ✓   91 [firefox] › tests\e2e\scenario-mechanics.spec.ts:79:7 › The Conveyer - Platform Mechanics › should show platform cells with [PLATFORM] tag on hover (6.8s)
+  ✓   95 [firefox] › tests\e2e\scenario-mechanics.spec.ts:132:7 › Fungal Horror - Growth Mechanics › should show overgrown area on hover (7.0s)
+  ✓   96 [firefox] › tests\e2e\scenario-mechanics.spec.ts:144:7 › Fungal Horror - Growth Mechanics › should process fungal spread on end round (7.5s)
+  ✓   99 [firefox] › tests\e2e\scenario-mechanics.spec.ts:209:7 › Priority Target (Scrag) › should mark priority target (6.9s)
+  ✓   97 [firefox] › tests\e2e\scenario-mechanics.spec.ts:170:7 › Round Management › should increment round counter on end round (8.3s)
+  ✓  101 [firefox] › tests\e2e\unit-interactions.spec.ts:21:7 › Unit Interactions › should display unit information on hover (6.1s)
+  ✓   98 [firefox] › tests\e2e\scenario-mechanics.spec.ts:185:7 › Round Management › should allow multiple rounds (8.3s)
+  ✓  102 [firefox] › tests\e2e\unit-interactions.spec.ts:38:7 › Unit Interactions › should select unit on click (6.6s)
+  ✓  104 [firefox] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover (6.4s)
+  ✓  103 [firefox] › tests\e2e\unit-interactions.spec.ts:51:7 › Unit Interactions › should deselect unit on second click (7.0s)
+  ✓  105 [firefox] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover (6.6s)
+  ✓  100 [firefox] › tests\e2e\scenario-mechanics.spec.ts:214:7 › Priority Target (Scrag) › should show priority target marker on hover (8.6s)
+  ✓  106 [firefox] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections (7.4s)
+  ✓  110 [firefox] › tests\e2e\visual-regression.spec.ts:17:7 › Visual Effects › should display CRT overlay effects (4.3s)
+  ✓  115 [firefox] › tests\e2e\visual-regression.spec.ts:70:7 › Responsive Design › should render on desktop viewport (2.6s)
+  ✓  111 [firefox] › tests\e2e\visual-regression.spec.ts:28:7 › Visual Effects › should have monospace font for terminal effect (4.4s)
+  ✓  107 [firefox] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected (7.2s)
+  ✓  116 [firefox] › tests\e2e\visual-regression.spec.ts:79:7 › Responsive Design › should render on tablet viewport (2.8s)
+  ✓  112 [firefox] › tests\e2e\visual-regression.spec.ts:37:7 › Visual Effects › should have green phosphor color scheme (4.8s)
+  ✓  109 [firefox] › tests\e2e\unit-interactions.spec.ts:175:7 › Visual Modes › should toggle visualization mode (5.9s)
+  ✓  114 [firefox] › tests\e2e\visual-regression.spec.ts:56:7 › Visual Effects › should have proper cell sizing (4.2s)
+  ✓  108 [firefox] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile (6.3s)
+  ✓  113 [firefox] › tests\e2e\visual-regression.spec.ts:47:7 › Visual Effects › should render map in grid layout (4.6s)
+  ✓  117 [firefox] › tests\e2e\visual-regression.spec.ts:88:7 › Responsive Design › should render on mobile viewport (3.0s)
+  ✓  124 [firefox] › tests\e2e\visual-regression.spec.ts:219:7 › Animations › should have scan bar animation (2.6s)
+  ✓  118 [firefox] › tests\e2e\visual-regression.spec.ts:105:7 › Color Coding › should have distinct colors for attackers and defenders (4.6s)
+  ✓  119 [firefox] › tests\e2e\visual-regression.spec.ts:123:7 › Color Coding › should highlight selected units (4.1s)
+  ✓  120 [firefox] › tests\e2e\visual-regression.spec.ts:143:7 › Color Coding › should have hazard warning colors (4.2s)
+  ✓  121 [firefox] › tests\e2e\visual-regression.spec.ts:165:7 › Terrain Symbols › should render box-drawing characters for walls (4.2s)
+  ✓  126 [firefox] › tests\e2e\visual-regression.spec.ts:243:7 › Animations › should have fungal pulse animation (3.4s)
+  ✓  125 [firefox] › tests\e2e\visual-regression.spec.ts:230:7 › Animations › should have typing cursor animation on status text (3.9s)
+  ✓  123 [firefox] › tests\e2e\visual-regression.spec.ts:199:7 › Terrain Symbols › should render fungal overgrowth with correct symbol (4.6s)
+  ✘   70 [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge (31.3s)
+  ✓  122 [firefox] › tests\e2e\visual-regression.spec.ts:180:7 › Terrain Symbols › should render special symbols for objectives (4.9s)
+  ✓  134 [webkit] › tests\e2e\scenario-loading.spec.ts:41:7 › Scenario Loading › should display legend with all terrain types (3.5s)
+  ✓  132 [webkit] › tests\e2e\scenario-loading.spec.ts:17:7 › Scenario Loading › should load the page with correct title (3.7s)
+  ✓  137 [webkit] › tests\e2e\scenario-loading.spec.ts:26:7 › Scenario Loading › should have scenario dropdown with all scenarios (3.3s)
+  ✓  138 [webkit] › tests\e2e\scenario-loading.spec.ts:51:7 › Scenario Loading › should have control buttons (3.3s)
+  ✓  136 [webkit] › tests\e2e\scenario-loading.spec.ts:21:7 › Scenario Loading › should display header with gang name (3.4s)
+  ✓  140 [webkit] › tests\e2e\scenario-loading.spec.ts:68:7 › Scenario Loading › should display cogitator feed (3.2s)
+  ✓  139 [webkit] › tests\e2e\scenario-loading.spec.ts:57:7 › Scenario Loading › should auto-generate map on load (4.7s)
+  ✓  128 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Bushwhack (11.3s)
+  ✓  127 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Scrag (11.5s)
+  ✓  143 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MAYHEM scenario (6.9s)
+  ✓  141 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate BUSHWHACK scenario (7.1s)
+  ✓  142 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate SCRAG scenario (7.1s)
+  ✓  129 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture The Conveyer (11.8s)
+  ✓  130 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Fungal Horror (11.8s)
+  ✓  131 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Manufactorum Raid (12.0s)
+  ✓  135 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Mayhem (11.9s)
+  ✓  144 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MANUFACTORUM RAID scenario (6.4s)
+  ✓  145 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate CONVEYER scenario (6.4s)
+  ✓  148 [webkit] › tests\e2e\scenario-mechanics.spec.ts:22:7 › Manufactorum Raid - Bomb Mechanics › should display 3 bomb markers (7.1s)
+  ✓  147 [webkit] › tests\e2e\scenario-loading.spec.ts:112:7 › Scenario Generation › should generate random ambush scenario (7.3s)
+  ✓  146 [webkit] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate FUNGAL HORROR scenario (7.4s)
+  ✓  151 [webkit] › tests\e2e\scenario-mechanics.spec.ts:49:7 › Manufactorum Raid - Bomb Mechanics › should show scenario name in status (6.8s)
+  ✓  152 [webkit] › tests\e2e\scenario-mechanics.spec.ts:67:7 › The Conveyer - Platform Mechanics › should display platform area (6.9s)
+  ✓  153 [webkit] › tests\e2e\scenario-mechanics.spec.ts:73:7 › The Conveyer - Platform Mechanics › should display loot caskets (7.0s)
+  ✓  149 [webkit] › tests\e2e\scenario-mechanics.spec.ts:28:7 › Manufactorum Raid - Bomb Mechanics › should show bomb information on hover (8.9s)
+  ✓  150 [webkit] › tests\e2e\scenario-mechanics.spec.ts:38:7 › Manufactorum Raid - Bomb Mechanics › should update status on end round (9.4s)
+  ✓  154 [webkit] › tests\e2e\scenario-mechanics.spec.ts:79:7 › The Conveyer - Platform Mechanics › should show platform cells with [PLATFORM] tag on hover (8.6s)
+  ✓  156 [webkit] › tests\e2e\scenario-mechanics.spec.ts:118:7 › Fungal Horror - Growth Mechanics › should display fungal overgrowth (6.5s)
+  ✓  155 [webkit] › tests\e2e\scenario-mechanics.spec.ts:97:7 › The Conveyer - Platform Mechanics › should show platform movement on end round (8.6s)
+  ✓  157 [webkit] › tests\e2e\scenario-mechanics.spec.ts:127:7 › Fungal Horror - Growth Mechanics › should show fungal marker in status (7.1s)
+  ✓  162 [webkit] › tests\e2e\scenario-mechanics.spec.ts:209:7 › Priority Target (Scrag) › should mark priority target (6.9s)
+  ✓  158 [webkit] › tests\e2e\scenario-mechanics.spec.ts:132:7 › Fungal Horror - Growth Mechanics › should show overgrown area on hover (9.0s)
+  ✓  159 [webkit] › tests\e2e\scenario-mechanics.spec.ts:144:7 › Fungal Horror - Growth Mechanics › should process fungal spread on end round (9.4s)
+  ✓  164 [webkit] › tests\e2e\unit-interactions.spec.ts:21:7 › Unit Interactions › should display unit information on hover (8.6s)
+  ✓  165 [webkit] › tests\e2e\unit-interactions.spec.ts:38:7 › Unit Interactions › should select unit on click (8.6s)
+  ✓  160 [webkit] › tests\e2e\scenario-mechanics.spec.ts:170:7 › Round Management › should increment round counter on end round (11.4s)
+  ✓  167 [webkit] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover (8.5s)
+  ✘  133 [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge (30.8s)
+  ✓  166 [webkit] › tests\e2e\unit-interactions.spec.ts:51:7 › Unit Interactions › should deselect unit on second click (10.2s)
+  ✓  161 [webkit] › tests\e2e\scenario-mechanics.spec.ts:185:7 › Round Management › should allow multiple rounds (13.1s)
+  ✓  163 [webkit] › tests\e2e\scenario-mechanics.spec.ts:214:7 › Priority Target (Scrag) › should show priority target marker on hover (12.8s)
+  ✓  173 [webkit] › tests\e2e\visual-regression.spec.ts:17:7 › Visual Effects › should display CRT overlay effects (4.4s)
+  ✓  168 [webkit] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover (8.8s)
+  ✓  174 [webkit] › tests\e2e\visual-regression.spec.ts:28:7 › Visual Effects › should have monospace font for terminal effect (4.3s)
+  ✓  177 [webkit] › tests\e2e\visual-regression.spec.ts:70:7 › Responsive Design › should render on desktop viewport (3.2s)
+  ✓  175 [webkit] › tests\e2e\visual-regression.spec.ts:37:7 › Visual Effects › should have green phosphor color scheme (4.4s)
+  ✓  179 [webkit] › tests\e2e\visual-regression.spec.ts:79:7 › Responsive Design › should render on tablet viewport (2.5s)
+  ✓  169 [webkit] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections (10.2s)
+  ✓  176 [webkit] › tests\e2e\visual-regression.spec.ts:56:7 › Visual Effects › should have proper cell sizing (4.5s)
+  ✓  180 [webkit] › tests\e2e\visual-regression.spec.ts:88:7 › Responsive Design › should render on mobile viewport (2.7s)
+  ✓  178 [webkit] › tests\e2e\visual-regression.spec.ts:47:7 › Visual Effects › should render map in grid layout (4.5s)
+  ✓  170 [webkit] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected (10.6s)
+  ✓  172 [webkit] › tests\e2e\unit-interactions.spec.ts:175:7 › Visual Modes › should toggle visualization mode (8.7s)
+  ✓  171 [webkit] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile (10.6s)
+  ✓  181 [webkit] › tests\e2e\visual-regression.spec.ts:105:7 › Color Coding › should have distinct colors for attackers and defenders (4.5s)
+  ✓  187 [webkit] › tests\e2e\visual-regression.spec.ts:219:7 › Animations › should have scan bar animation (2.9s)
+  ✓  183 [webkit] › tests\e2e\visual-regression.spec.ts:143:7 › Color Coding › should have hazard warning colors (4.7s)
+  ✓  184 [webkit] › tests\e2e\visual-regression.spec.ts:165:7 › Terrain Symbols › should render box-drawing characters for walls (4.7s)
+  ✓  182 [webkit] › tests\e2e\visual-regression.spec.ts:123:7 › Color Coding › should highlight selected units (5.9s)
+  ✓  188 [webkit] › tests\e2e\visual-regression.spec.ts:230:7 › Animations › should have typing cursor animation on status text (4.3s)
+  ✓  185 [webkit] › tests\e2e\visual-regression.spec.ts:180:7 › Terrain Symbols › should render special symbols for objectives (6.6s)
+  ✓  189 [webkit] › tests\e2e\visual-regression.spec.ts:243:7 › Animations › should have fungal pulse animation (4.8s)
+  ✓  186 [webkit] › tests\e2e\visual-regression.spec.ts:199:7 › Terrain Symbols › should render fungal overgrowth with correct symbol (6.2s)
+  ✓  197 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:17:7 › Scenario Loading › should load the page with correct title (2.7s)
+  ✓  198 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:21:7 › Scenario Loading › should display header with gang name (2.6s)
+  ✓  199 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:26:7 › Scenario Loading › should have scenario dropdown with all scenarios (3.3s)
+  ✓  200 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:41:7 › Scenario Loading › should display legend with all terrain types (3.2s)
+  ✓  201 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:51:7 › Scenario Loading › should have control buttons (3.2s)
+  ✓  190 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Scrag (8.0s)
+  ✓  191 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Bushwhack (7.9s)
+  ✓  192 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Mayhem (7.9s)
+  ✓  193 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Manufactorum Raid (7.8s)
+  ✓  203 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:68:7 › Scenario Loading › should display cogitator feed (3.0s)
+  ✓  202 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:57:7 › Scenario Loading › should auto-generate map on load (4.1s)
+  ✓  194 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture The Conveyer (7.6s)
+  ✓  195 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Fungal Horror (7.4s)
+  ✓  204 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate BUSHWHACK scenario (5.5s)
+  ✓  206 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MAYHEM scenario (5.6s)
+  ✓  208 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate CONVEYER scenario (5.3s)
+  ✓  207 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MANUFACTORUM RAID scenario (5.4s)
+  ✓  210 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:112:7 › Scenario Generation › should generate random ambush scenario (5.1s)
+  ✓  211 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:22:7 › Manufactorum Raid - Bomb Mechanics › should display 3 bomb markers (5.1s)
+  ✓  209 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate FUNGAL HORROR scenario (5.3s)
+  ✓  205 [Mobile Chrome] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate SCRAG scenario (6.3s)
+  ✓  212 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:28:7 › Manufactorum Raid - Bomb Mechanics › should show bomb information on hover (5.1s)
+  ✓  213 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:38:7 › Manufactorum Raid - Bomb Mechanics › should update status on end round (5.2s)
+  ✓  214 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:49:7 › Manufactorum Raid - Bomb Mechanics › should show scenario name in status (4.7s)
+  ✓  216 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:73:7 › The Conveyer - Platform Mechanics › should display loot caskets (5.9s)
+  ✓  215 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:67:7 › The Conveyer - Platform Mechanics › should display platform area (6.2s)
+  ✓  219 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:118:7 › Fungal Horror - Growth Mechanics › should display fungal overgrowth (5.5s)
+  ✓  217 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:79:7 › The Conveyer - Platform Mechanics › should show platform cells with [PLATFORM] tag on hover (5.8s)
+  ✓  220 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:127:7 › Fungal Horror - Growth Mechanics › should show fungal marker in status (5.6s)
+  ✓  218 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:97:7 › The Conveyer - Platform Mechanics › should show platform movement on end round (5.8s)
+  ✓  225 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:209:7 › Priority Target (Scrag) › should mark priority target (5.2s)
+  ✓  222 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:144:7 › Fungal Horror - Growth Mechanics › should process fungal spread on end round (5.8s)
+  ✓  221 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:132:7 › Fungal Horror - Growth Mechanics › should show overgrown area on hover (5.8s)
+  ✓  223 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:170:7 › Round Management › should increment round counter on end round (5.8s)
+  ✓  224 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:185:7 › Round Management › should allow multiple rounds (5.7s)
+  ✓  236 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:17:7 › Visual Effects › should display CRT overlay effects (4.6s)
+  ✓  228 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:38:7 › Unit Interactions › should select unit on click (5.7s)
+  ✓  229 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:51:7 › Unit Interactions › should deselect unit on second click (5.7s)
+  ✓  235 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:175:7 › Visual Modes › should toggle visualization mode (5.2s)
+  ✓  227 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:21:7 › Unit Interactions › should display unit information on hover (5.8s)
+  ✓  232 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections (5.6s)
+  ✓  226 [Mobile Chrome] › tests\e2e\scenario-mechanics.spec.ts:214:7 › Priority Target (Scrag) › should show priority target marker on hover (6.2s)
+  ✓  243 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:88:7 › Responsive Design › should render on mobile viewport (3.3s)
+  ✓  237 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:28:7 › Visual Effects › should have monospace font for terminal effect (4.7s)
+  ✓  242 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:79:7 › Responsive Design › should render on tablet viewport (4.3s)
+  ✓  238 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:37:7 › Visual Effects › should have green phosphor color scheme (4.4s)
+  ✓  239 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:47:7 › Visual Effects › should render map in grid layout (4.4s)
+  ✓  240 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:56:7 › Visual Effects › should have proper cell sizing (4.4s)
+  ✓  241 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:70:7 › Responsive Design › should render on desktop viewport (5.2s)
+  ✓  250 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:219:7 › Animations › should have scan bar animation (3.0s)
+  ✓  244 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:105:7 › Color Coding › should have distinct colors for attackers and defenders (4.8s)
+  ✘  196 [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge (31.1s)
+  ✓  247 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:165:7 › Terrain Symbols › should render box-drawing characters for walls (4.5s)
+  ✓  246 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:143:7 › Color Coding › should have hazard warning colors (4.5s)
+  ✓  245 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:123:7 › Color Coding › should highlight selected units (4.7s)
+  ✓  248 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:180:7 › Terrain Symbols › should render special symbols for objectives (4.9s)
+  ✓  249 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:199:7 › Terrain Symbols › should render fungal overgrowth with correct symbol (4.9s)
+  ✓  252 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:243:7 › Animations › should have fungal pulse animation (3.4s)
+  ✓  251 [Mobile Chrome] › tests\e2e\visual-regression.spec.ts:230:7 › Animations › should have typing cursor animation on status text (4.3s)
+  ✓  260 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:17:7 › Scenario Loading › should load the page with correct title (2.9s)
+  ✓  261 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:21:7 › Scenario Loading › should display header with gang name (2.6s)
+  ✓  253 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Bushwhack (10.9s)
+  ✓  255 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Manufactorum Raid (11.6s)
+  ✓  258 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Fungal Horror (11.4s)
+  ✓  254 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Mayhem (11.8s)
+  ✓  256 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Scrag (11.8s)
+  ✓  262 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:26:7 › Scenario Loading › should have scenario dropdown with all scenarios (2.9s)
+  ✓  257 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture The Conveyer (11.9s)
+  ✓  263 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:41:7 › Scenario Loading › should display legend with all terrain types (2.8s)
+  ✘  230 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover (30.7s)
+  ✘  231 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover (30.7s)
+  ✘  233 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected (30.7s)
+  ✘  234 [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile (30.7s)
+  ✓  264 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:51:7 › Scenario Loading › should have control buttons (3.1s)
+  ✓  266 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:68:7 › Scenario Loading › should display cogitator feed (3.1s)
+  ✓  265 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:57:7 › Scenario Loading › should auto-generate map on load (4.8s)
+  ✓  268 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate SCRAG scenario (6.7s)
+  ✓  267 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate BUSHWHACK scenario (6.9s)
+  ✓  269 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MAYHEM scenario (6.7s)
+  ✓  270 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate MANUFACTORUM RAID scenario (6.6s)
+  ✓  271 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:28:7 › Manufactorum Raid - Bomb Mechanics › should show bomb information on hover (8.2s)
+  ✓  276 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:22:7 › Manufactorum Raid - Bomb Mechanics › should display 3 bomb markers (6.9s)
+  ✓  273 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate CONVEYER scenario (6.8s)
+  ✓  275 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:112:7 › Scenario Generation › should generate random ambush scenario (7.0s)
+  ✓  274 [Mobile Safari] › tests\e2e\scenario-loading.spec.ts:92:9 › Scenario Generation › should generate FUNGAL HORROR scenario (7.1s)
+  ✓  277 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:49:7 › Manufactorum Raid - Bomb Mechanics › should show scenario name in status (6.6s)
+  ✓  272 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:38:7 › Manufactorum Raid - Bomb Mechanics › should update status on end round (8.6s)
+  ✓  278 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:67:7 › The Conveyer - Platform Mechanics › should display platform area (6.5s)
+  ✓  279 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:73:7 › The Conveyer - Platform Mechanics › should display loot caskets (6.6s)
+  ✓  280 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:79:7 › The Conveyer - Platform Mechanics › should show platform cells with [PLATFORM] tag on hover (8.3s)
+  ✓  281 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:97:7 › The Conveyer - Platform Mechanics › should show platform movement on end round (8.5s)
+  ✓  282 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:118:7 › Fungal Horror - Growth Mechanics › should display fungal overgrowth (7.1s)
+  ✓  283 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:127:7 › Fungal Horror - Growth Mechanics › should show fungal marker in status (7.1s)
+  ✓  288 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:209:7 › Priority Target (Scrag) › should mark priority target (6.6s)
+  ✓  284 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:132:7 › Fungal Horror - Growth Mechanics › should show overgrown area on hover (8.7s)
+  ✓  285 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:144:7 › Fungal Horror - Growth Mechanics › should process fungal spread on end round (9.1s)
+  ✓  290 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:21:7 › Unit Interactions › should display unit information on hover (8.1s)
+  ✘  259 [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge (30.6s)
+  ✓  286 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:170:7 › Round Management › should increment round counter on end round (10.9s)
+  ✓  291 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:38:7 › Unit Interactions › should select unit on click (8.2s)
+  ✓  287 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:185:7 › Round Management › should allow multiple rounds (12.3s)
+  ✓  289 [Mobile Safari] › tests\e2e\scenario-mechanics.spec.ts:214:7 › Priority Target (Scrag) › should show priority target marker on hover (11.9s)
+  ✓  299 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:28:7 › Visual Effects › should have monospace font for terminal effect (4.1s)
+  ✓  292 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:51:7 › Unit Interactions › should deselect unit on second click (9.6s)
+  ✓  294 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover (8.3s)
+  ✓  300 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:17:7 › Visual Effects › should display CRT overlay effects (4.4s)
+  ✓  302 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:47:7 › Visual Effects › should render map in grid layout (4.1s)
+  ✓  301 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:37:7 › Visual Effects › should have green phosphor color scheme (4.3s)
+  ✓  306 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:88:7 › Responsive Design › should render on mobile viewport (2.8s)
+  ✓  298 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:175:7 › Visual Modes › should toggle visualization mode (7.7s)
+  ✓  303 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:56:7 › Visual Effects › should have proper cell sizing (4.2s)
+  ✓  297 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile (9.7s)
+  ✓  305 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:79:7 › Responsive Design › should render on tablet viewport (3.9s)
+  ✓  304 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:70:7 › Responsive Design › should render on desktop viewport (4.6s)
+  ✓  307 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:105:7 › Color Coding › should have distinct colors for attackers and defenders (4.4s)
+  ✓  309 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:143:7 › Color Coding › should have hazard warning colors (4.2s)
+  ✓  313 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:219:7 › Animations › should have scan bar animation (2.9s)
+  ✓  310 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:165:7 › Terrain Symbols › should render box-drawing characters for walls (4.3s)
+  ✓  308 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:123:7 › Color Coding › should highlight selected units (6.0s)
+  ✓  314 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:230:7 › Animations › should have typing cursor animation on status text (4.5s)
+  ✓  311 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:180:7 › Terrain Symbols › should render special symbols for objectives (5.9s)
+  ✓  312 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:199:7 › Terrain Symbols › should render fungal overgrowth with correct symbol (6.0s)
+  ✓  315 [Mobile Safari] › tests\e2e\visual-regression.spec.ts:243:7 › Animations › should have fungal pulse animation (5.1s)
+  ✘  293 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover (30.5s)
+  ✘  295 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections (30.5s)
+  ✘  296 [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected (30.5s)
+
+
+  1) [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#scenario-select')[22m
+    [2m    - locator resolved to <select id="scenario-select" class="scenario-dropdown">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    47 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      38 |
+      39 |       // 2. Select Scenario
+    > 40 |       await page.selectOption('#scenario-select', scenario.value);
+         |                  ^
+      41 |       await page.click('button:has-text("New Battle")');
+      42 |       
+      43 |       // Wait for map generation and animations
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\reference-screenshots.spec.ts:40:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-chromium\error-context.md
+
+  2) [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#scenario-select')[22m
+    [2m    - locator resolved to <select id="scenario-select" class="scenario-dropdown">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    42 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      38 |
+      39 |       // 2. Select Scenario
+    > 40 |       await page.selectOption('#scenario-select', scenario.value);
+         |                  ^
+      41 |       await page.click('button:has-text("New Battle")');
+      42 |       
+      43 |       // Wait for map generation and animations
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\reference-screenshots.spec.ts:40:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-firefox\error-context.md
+
+  3) [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#scenario-select')[22m
+    [2m    - locator resolved to <select id="scenario-select" class="scenario-dropdown">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    51 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      38 |
+      39 |       // 2. Select Scenario
+    > 40 |       await page.selectOption('#scenario-select', scenario.value);
+         |                  ^
+      41 |       await page.click('button:has-text("New Battle")');
+      42 |       
+      43 |       // Wait for map generation and animations
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\reference-screenshots.spec.ts:40:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-webkit\error-context.md
+
+  4) [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#scenario-select')[22m
+    [2m    - locator resolved to <select id="scenario-select" class="scenario-dropdown">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    53 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      38 |
+      39 |       // 2. Select Scenario
+    > 40 |       await page.selectOption('#scenario-select', scenario.value);
+         |                  ^
+      41 |       await page.click('button:has-text("New Battle")');
+      42 |       
+      43 |       // Wait for map generation and animations
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\reference-screenshots.spec.ts:40:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Chrome\error-context.md
+
+  5) [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.hover: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-floor').first()[22m
+    [2m    - locator resolved to <span data-x="0" data-y="0" class="cell terrain-floor">·</span>[22m
+    [2m  - attempting hover action[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m      - waiting 100ms[22m
+    [2m    47 × waiting for element to be visible and stable[22m
+    [2m       - element is visible and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m     - retrying hover action[22m
+    [2m       - waiting 500ms[22m
+
+
+      68 |     // Find a floor tile
+      69 |     const floorTile = page.locator('#battle-map .terrain-floor').first();
+    > 70 |     await floorTile.hover();
+         |                     ^
+      71 |
+      72 |     await page.waitForTimeout(200);
+      73 |
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:70:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Chrome\error-context.md
+
+  6) [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.hover: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-hazard').first()[22m
+    [2m    - locator resolved to <span data-x="1" data-y="1" class="cell terrain-hazard">≈</span>[22m
+    [2m  - attempting hover action[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m      - waiting 100ms[22m
+    [2m    47 × waiting for element to be visible and stable[22m
+    [2m       - element is visible and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m     - retrying hover action[22m
+    [2m       - waiting 500ms[22m
+
+
+      83 |
+      84 |     if ((await hazardTile.count()) > 0) {
+    > 85 |       await hazardTile.hover();
+         |                        ^
+      86 |       await page.waitForTimeout(200);
+      87 |
+      88 |       const statusText = page.locator('#status-text');
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:85:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-4191d-lay-hazard-warning-on-hover-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-4191d-lay-hazard-warning-on-hover-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Int-4191d-lay-hazard-warning-on-hover-Mobile-Chrome\error-context.md
+
+  7) [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-floor').first()[22m
+    [2m    - locator resolved to <span data-x="0" data-y="0" class="cell terrain-floor">·</span>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    47 × waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+
+
+      138 |
+      139 |     // Click floor tile to move
+    > 140 |     await floorTile.click();
+          |                     ^
+      141 |
+      142 |     // Wait for movement
+      143 |     await page.waitForTimeout(300);
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:140:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Chrome\error-context.md
+
+  8) [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-wall').first()[22m
+    [2m    - locator resolved to <span data-x="6" data-y="1" class="cell terrain-wall">╔</span>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <h1>Sector 9-Z // The Marauders</h1> from <header>…</header> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <h1>Sector 9-Z // The Marauders</h1> from <header>…</header> subtree intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    46 × waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <h1>Sector 9-Z // The Marauders</h1> from <header>…</header> subtree intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+    [2m    - element is visible, enabled and stable[22m
+    [2m    - scrolling into view if needed[22m
+    [2m    - done scrolling[22m
+
+
+      157 |
+      158 |     if ((await wallTile.count()) > 0) {
+    > 159 |       await wallTile.click();
+          |                      ^
+      160 |       await page.waitForTimeout(300);
+      161 |
+      162 |       const statusText = page.locator('#status-text');
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:159:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-a4258--not-move-unit-to-wall-tile-Mobile-Chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-a4258--not-move-unit-to-wall-tile-Mobile-Chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Mov-a4258--not-move-unit-to-wall-tile-Mobile-Chrome\error-context.md
+
+  9) [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: page.selectOption: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#scenario-select')[22m
+    [2m    - locator resolved to <select id="scenario-select" class="scenario-dropdown">…</select>[22m
+    [2m  - attempting select option action[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and enabled[22m
+    [2m      - did not find some options[22m
+    [2m    - retrying select option action[22m
+    [2m      - waiting 100ms[22m
+    [2m    52 × waiting for element to be visible and enabled[22m
+    [2m       - did not find some options[22m
+    [2m     - retrying select option action[22m
+    [2m       - waiting 500ms[22m
+
+
+      38 |
+      39 |       // 2. Select Scenario
+    > 40 |       await page.selectOption('#scenario-select', scenario.value);
+         |                  ^
+      41 |       await page.click('button:has-text("New Battle")');
+      42 |       
+      43 |       // Wait for map generation and animations
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\reference-screenshots.spec.ts:40:18
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\reference-screenshots-Refe-0abe8-enshots-capture-Toll-Bridge-Mobile-Safari\error-context.md
+
+  10) [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.hover: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-floor').first()[22m
+    [2m    - locator resolved to <span data-x="0" data-y="0" class="cell terrain-floor">·</span>[22m
+    [2m  - attempting hover action[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible and stable[22m
+    [2m      - element is visible and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying hover action[22m
+    [2m      - waiting 100ms[22m
+    [2m    11 × waiting for element to be visible and stable[22m
+    [2m       - element is visible and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m     - retrying hover action[22m
+    [2m       - waiting 500ms[22m
+
+
+      68 |     // Find a floor tile
+      69 |     const floorTile = page.locator('#battle-map .terrain-floor').first();
+    > 70 |     await floorTile.hover();
+         |                     ^
+      71 |
+      72 |     await page.waitForTimeout(200);
+      73 |
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:70:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Int-283a8-errain-information-on-hover-Mobile-Safari\error-context.md
+
+  11) [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .unit-attacker').first()[22m
+    [2m    - locator resolved to <span data-x="2" data-y="19" class="cell unit-attacker">M</span>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - performing click action[22m
+    [2m      - <div class="map-frame">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - performing click action[22m
+    [2m      - <div class="map-frame">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    11 × waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - performing click action[22m
+    [2m       - <div class="map-frame">…</div> intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+
+
+       97 |     if (count >= 2) {
+       98 |       // Select first unit
+    >  99 |       await attackerUnits.nth(0).click();
+          |                                  ^
+      100 |       await expect(attackerUnits.nth(0)).toHaveClass(/selected/);
+      101 |
+      102 |       // Select second unit
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:99:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-9e00a-ing-between-unit-selections-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Int-9e00a-ing-between-unit-selections-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Int-9e00a-ing-between-unit-selections-Mobile-Safari\error-context.md
+
+  12) [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected 
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('#battle-map .terrain-floor').first()[22m
+    [2m    - locator resolved to <span data-x="0" data-y="0" class="cell terrain-floor">·</span>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is visible, enabled and stable[22m
+    [2m      - scrolling into view if needed[22m
+    [2m      - done scrolling[22m
+    [2m      - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    10 × waiting for element to be visible, enabled and stable[22m
+    [2m       - element is visible, enabled and stable[22m
+    [2m       - scrolling into view if needed[22m
+    [2m       - done scrolling[22m
+    [2m       - <div class="crt-container">…</div> intercepts pointer events[22m
+    [2m     - retrying click action[22m
+    [2m       - waiting 500ms[22m
+    [2m    - waiting for element to be visible, enabled and stable[22m
+
+
+      138 |
+      139 |     // Click floor tile to move
+    > 140 |     await floorTile.click();
+          |                     ^
+      141 |
+      142 |     // Wait for movement
+      143 |     await page.waitForTimeout(300);
+        at D:\I_Drive_Backup\Projects\necromunda_terminal_map\tests\e2e\unit-interactions.spec.ts:140:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Safari\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Safari\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\unit-interactions-Unit-Mov-c3c52-to-floor-tile-when-selected-Mobile-Safari\error-context.md
+
+  12 failed
+    [chromium] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+    [firefox] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+    [webkit] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+    [Mobile Chrome] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+    [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover 
+    [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:80:7 › Unit Interactions › should display hazard warning on hover 
+    [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected 
+    [Mobile Chrome] › tests\e2e\unit-interactions.spec.ts:150:7 › Unit Movement › should not move unit to wall tile 
+    [Mobile Safari] › tests\e2e\reference-screenshots.spec.ts:33:9 › Reference Screenshots › capture Toll Bridge 
+    [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:67:7 › Unit Interactions › should show terrain information on hover 
+    [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:93:7 › Unit Interactions › should allow switching between unit selections 
+    [Mobile Safari] › tests\e2e\unit-interactions.spec.ts:123:7 › Unit Movement › should move unit to floor tile when selected 
+  303 passed (3.5m)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report[39m
+[36m[39m

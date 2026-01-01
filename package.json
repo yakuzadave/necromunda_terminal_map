@@ -1,0 +1,12 @@
+{
+    "name": "necromunda-terminal-map-tests",
+    "version": "1.0.0",
+    "description": "Playwright tests for Necromunda Terminal Map",
+    "scripts": {
+        "test": "playwright test"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.40.0",
+        "typescript": "^5.0.0"
+    }
+}

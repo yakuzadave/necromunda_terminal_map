@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(if [ -f .vscode/settings.json ])",
+      "Bash(then cat .vscode/settings.json)",
+      "Bash(else echo \"File does not exist\")",
+      "Bash(fi)",
+      "Bash(if [ -f .gitignore ])",
+      "Bash(then cat .gitignore)",
+      "Bash(where:*)",
+      "Bash(powershell -Command \"deno --version\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

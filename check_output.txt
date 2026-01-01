@@ -1,0 +1,31 @@
+[0m[32mCheck[0m file:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/tactical_map_test.ts
+[0m[1mTS2345 [0m[ERROR]: Argument of type '"bushwhack"' is not assignable to parameter of type 'null | undefined'.
+    map.generate("bushwhack");
+[0m[31m                 ~~~~~~~~~~~[0m
+    at [0m[36mfile:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/tactical_map_test.ts[0m:[0m[33m23[0m:[0m[33m18[0m
+
+[0m[1mTS2345 [0m[ERROR]: Argument of type '"bushwhack"' is not assignable to parameter of type 'null | undefined'.
+    map.generate("bushwhack");
+[0m[31m                 ~~~~~~~~~~~[0m
+    at [0m[36mfile:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/tactical_map_test.ts[0m:[0m[33m52[0m:[0m[33m18[0m
+
+[0m[1mTS2345 [0m[ERROR]: Argument of type '"bushwhack"' is not assignable to parameter of type 'null | undefined'.
+    map.generate("bushwhack");
+[0m[31m                 ~~~~~~~~~~~[0m
+    at [0m[36mfile:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/tactical_map_test.ts[0m:[0m[33m88[0m:[0m[33m18[0m
+
+[0m[1mTS7053 [0m[ERROR]: Element implicitly has an 'any' type because expression of type 'string | symbol' can't be used to index type '{}'.
+  No index signature with a parameter of type 'string' was found on type '{}'.
+            target[prop] = value;
+[0m[31m            ~~~~~~~~~~~~[0m
+    at [0m[36mfile:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/test_setup.ts[0m:[0m[33m9[0m:[0m[33m13[0m
+
+[0m[1mTS7053 [0m[ERROR]: Element implicitly has an 'any' type because expression of type 'string | symbol' can't be used to index type '{}'.
+  No index signature with a parameter of type 'string' was found on type '{}'.
+            return target[prop] || "";
+[0m[31m                   ~~~~~~~~~~~~[0m
+    at [0m[36mfile:///D:/I_Drive_Backup/Projects/necromunda_terminal_map/tests/test_setup.ts[0m:[0m[33m13[0m:[0m[33m20[0m
+
+Found 5 errors.
+
+[0m[1m[31merror[0m: Type checking failed.

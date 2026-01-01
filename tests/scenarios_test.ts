@@ -47,7 +47,7 @@ Deno.test("Scenario Victory - Bushwhack", async () => {
 
 Deno.test("Scenario Logic - Manufactorum Raid", async () => {
     const { TacticalMap } = await import("../app.js");
-    const map = new TacticalMap(30, 30);
+    const map = new TacticalMap(50, 50);
     map.generate("manufactorumRaid");
 
     assertEquals(map.bombs.length, 3);

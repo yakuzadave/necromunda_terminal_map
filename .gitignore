@@ -1,0 +1,45 @@
+# Playwright Test Results
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# Screenshots and Videos
+/screenshots/
+
+# Deno
+/deno.lock
+/.deno/
+
+# Node modules (for npm compatibility layer)
+/node_modules/
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+/.vscode/
+/.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+/dist/
+/build/
+/.cache/
+
+# Coverage
+/coverage/

@@ -6,8 +6,19 @@ export class TacticalMap {
         this.height = height;
         this.mapData = [];
         this.container = document.getElementById('battle-map');
-        console.log("TacticalMap constructor: container is", this.container);
+        if (!this.container) {
+            console.warn("TacticalMap: 'battle-map' element not found. Rendering will be disabled.");
+            this.container = { style: {}, innerHTML: '', appendChild: () => { } }; // Mock for safety
+        } else {
+            console.log("TacticalMap constructor: container is", this.container);
+        }
+
         this.statusDisplay = document.getElementById('status-text');
+        if (!this.statusDisplay) {
+            console.warn("TacticalMap: 'status-text' element not found. Logging will be disabled.");
+            this.statusDisplay = { innerHTML: '', classList: { remove: () => { }, add: () => { } }, offsetWidth: 0 };
+        }
+
         this.entities = [];
         this.visMode = false;
         this.selectedUnit = null;
@@ -28,22 +39,55 @@ export class TacticalMap {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    validateScenario(scenario) {
+        if (!scenario) return false;
+        const required = ['name', 'attacker', 'defender'];
+        const missing = required.filter(prop => !scenario[prop]);
+
+        if (missing.length > 0) {
+            console.error(`Invalid scenario: Missing properties [${missing.join(', ')}]`);
+            return false;
+        }
+
+        // Normalize victory check method name if needed
+        if (scenario.victory && !scenario.checkVictory) {
+            console.warn(`Scenario '${scenario.name}' uses deprecated 'victory' method. Mapping to 'checkVictory'.`);
+            scenario.checkVictory = scenario.victory;
+        }
+
+        return true;
+    }
+
+    /**
+     * Generate the map and scenario
+     * @param {string|null} scenarioKey - The key of the scenario to load
+     */
     generate(scenarioKey = null) {
         this.mapData = [];
         this.entities = [];
         this.selectedUnit = null;
         this.bombs = [];
         this.round = 0;
-        this.container.innerHTML = '';
+        if (this.container.innerHTML !== undefined) {
+            this.container.innerHTML = '';
+        }
 
         // Load scenario
+        let scenario = null;
         if (scenarioKey && SCENARIOS[scenarioKey]) {
-            this.currentScenario = SCENARIOS[scenarioKey];
+            scenario = SCENARIOS[scenarioKey];
         } else {
             // Default to random ambush scenario
             const ambushScenarios = ['bushwhack', 'scrag', 'mayhem'];
             scenarioKey = ambushScenarios[this.rand(0, ambushScenarios.length - 1)];
-            this.currentScenario = SCENARIOS[scenarioKey];
+            scenario = SCENARIOS[scenarioKey];
+        }
+
+        if (this.validateScenario(scenario)) {
+            this.currentScenario = scenario;
+        } else {
+            console.error("Failed to load valid scenario. Aborting generation.");
+            return;
         }
 
         this.log(`<br>=== ${this.currentScenario.name.toUpperCase()} ===<br>${this.currentScenario.description}`);
@@ -88,13 +132,13 @@ export class TacticalMap {
         // Cleanup: Cellular Automata to open paths
         this.smoothMap();
 
-        // 2. Deploy Units based on scenario
-        this.deployUnits();
-
-        // 3. Run scenario-specific setup
+        // 2. Run scenario-specific setup
         if (this.currentScenario.setup) {
             this.currentScenario.setup(this);
         }
+
+        // 3. Deploy Units based on scenario
+        this.deployUnits();
 
         this.render();
     }
@@ -122,7 +166,18 @@ export class TacticalMap {
 
         // Deploy Defenders
         const defenderRoll = this.rand(1, 3);
-        const defenderCount = this.currentScenario.defender.count === 'D3+5' ? defenderRoll + 5 : (this.currentScenario.defender.count || defenderRoll + 2);
+        let defenderCount = 6; // Default
+        const countConfig = this.currentScenario.defender.count;
+
+        if (countConfig === 'D3+5') {
+            defenderCount = defenderRoll + 5;
+        } else if (countConfig === 'D3+2') {
+            defenderCount = defenderRoll + 2;
+        } else if (typeof countConfig === 'number') {
+            defenderCount = countConfig;
+        } else {
+            defenderCount = defenderRoll + 2;
+        }
         this.log(`DEFENDER STRENGTH: ${defenderCount} detected.`);
 
         let placedDefenders = 0;
@@ -371,6 +426,8 @@ export class TacticalMap {
     }
 
     render() {
+        if (!this.mapData || this.mapData.length === 0) return;
+
         this.container.style.gridTemplateColumns = `repeat(${this.width}, 1ch)`;
         this.container.innerHTML = '';
 
@@ -478,8 +535,59 @@ export class TacticalMap {
 
     moveUnit(fx, fy, tx, ty) {
         const unit = this.mapData[fy][fx];
-        this.mapData[fy][fx] = { type: 'floor', char: '·', css: 'terrain-floor', desc: 'Open Ground' };
-        this.mapData[ty][tx] = unit;
+        const target = this.mapData[ty][tx];
+
+        // Handle Toxic River
+        if (target.isRiver && !target.isBridge) {
+            if (target.isDebris) {
+                this.log(`Unit leaps onto Debris at [${tx},${ty}]. Testing stability...`);
+                // Simple check: 1/6 chance to fall in (representing failed Initiative)
+                if (this.rand(1, 6) === 1) {
+                    this.log(`...Debris capsizes! Unit falls into Toxic River! GONE!`);
+                    this.mapData[fy][fx] = { type: 'floor', char: '·', css: 'terrain-floor', desc: 'Open Ground' };
+                    return; // Unit dies, do not place at target
+                }
+            } else {
+                this.log(`Unit falls into Toxic River at [${tx},${ty}]! GONE!`);
+                this.mapData[fy][fx] = { type: 'floor', char: '·', css: 'terrain-floor', desc: 'Open Ground' };
+                return; // Unit dies
+            }
+        }
+
+        // Restore previous tile at origin (assuming it was floor/ground for now, or we should track it)
+        // Ideally we'd pop the unit off a stack, but for now we reset to floor.
+        // If the unit was on a bridge, we should restore the bridge.
+        if (unit.isBridge) {
+            this.mapData[fy][fx] = { type: 'floor', char: '≡', css: 'terrain-floor', desc: 'Toll Bridge', isBridge: true, isRiver: true };
+        } else if (unit.isDebris) {
+            this.mapData[fy][fx] = { type: 'rubble', char: 'O', css: 'terrain-rubble', desc: 'Flotsam (Debris)', isDebris: true, isRiver: true };
+        } else {
+            this.mapData[fy][fx] = { type: 'floor', char: '·', css: 'terrain-floor', desc: 'Open Ground' };
+        }
+
+        // Move unit to target
+        // Preserve terrain flags on the unit so we know where it is standing
+        const newUnit = { ...unit };
+        if (target.isBridge) {
+            newUnit.isBridge = true;
+            newUnit.isRiver = true; // Bridge is over river
+        } else {
+            delete newUnit.isBridge;
+        }
+
+        if (target.isDebris) {
+            newUnit.isDebris = true;
+            newUnit.isRiver = true;
+        } else {
+            delete newUnit.isDebris;
+        }
+
+        if (target.isRiver && !target.isBridge && !target.isDebris) {
+            // Should have been caught above, but just in case
+            newUnit.isRiver = true;
+        }
+
+        this.mapData[ty][tx] = newUnit;
         this.log(`Moving to coordinate [${tx},${ty}].`);
     }
 
@@ -672,6 +780,7 @@ export class TacticalMap {
                     }
                 }
             }
+
         });
 
         this.log(`${attackersToRedeploy.length} attackers redeployed around new platform.`);
@@ -725,9 +834,205 @@ export class TacticalMap {
             }
         }
     }
-}
+    // Toll Bridge scenario methods
+    generateTollBridge() {
+        this.log("Constructing Toxic River and Toll Bridge...");
 
-// Initialize the map system
+        // 1. Create Toxic River (Vertical strip in center)
+        const riverStart = Math.floor(this.width / 2) - 3;
+        const riverEnd = Math.floor(this.width / 2) + 3;
+
+        for (let y = 0; y < this.height; y++) {
+            for (let x = riverStart; x <= riverEnd; x++) {
+                this.mapData[y][x] = {
+                    type: 'hazard',
+                    char: '≈',
+                    css: 'terrain-hazard',
+                    desc: 'Toxic River (Out of Action on entry)',
+                    isRiver: true
+                };
+            }
+        }
+
+        // 2. Create Bridge (Horizontal strip across river)
+        const bridgeY = Math.floor(this.height / 2);
+        const bridgeWidth = 3; // 3 cells wide
+
+        this.bridge = {
+            orientation: 'horizontal',
+            cells: []
+        };
+
+        for (let y = bridgeY - 1; y <= bridgeY + 1; y++) {
+            for (let x = riverStart - 1; x <= riverEnd + 1; x++) {
+                this.mapData[y][x] = {
+                    type: 'floor',
+                    char: '≡',
+                    css: 'terrain-floor',
+                    desc: 'Toll Bridge',
+                    isBridge: true
+                };
+                this.bridge.cells.push({ x, y });
+            }
+        }
+
+        // 3. Place Debris (Flotsam)
+        const debrisCount = 8;
+        let placedDebris = 0;
+        let attempts = 0;
+
+        while (placedDebris < debrisCount && attempts < 100) {
+            attempts++;
+            const x = this.rand(riverStart, riverEnd);
+            const y = this.rand(0, this.height - 1);
+
+            const cell = this.mapData[y][x];
+            if (cell.isRiver && !cell.isBridge) {
+                this.mapData[y][x] = {
+                    type: 'rubble', // Treat as rubble for movement (difficult terrain?) or special
+                    char: 'O',
+                    css: 'terrain-rubble',
+                    desc: 'Flotsam (Debris)',
+                    isDebris: true
+                };
+                placedDebris++;
+            }
+        }
+
+        this.log("Bridge secured. River toxic levels critical.");
+        this.render();
+    }
+
+    pivotBridge(direction) {
+        this.log(`WARNING: Bridge pivoting ${direction.toUpperCase()}!`);
+
+        const center = { x: Math.floor(this.width / 2), y: Math.floor(this.height / 2) };
+        const riverStart = Math.floor(this.width / 2) - 3;
+        const riverEnd = Math.floor(this.width / 2) + 3;
+
+        // Determine new orientation
+        const newOrientation = this.bridge.orientation === 'horizontal' ? 'vertical' : 'horizontal';
+
+        // Clear old bridge cells (revert to river or floor based on location)
+        // Actually, we should revert to what was there.
+        // If it was over river, it becomes river. If over land, it becomes floor.
+
+        // Simplified: Just regenerate the river and then draw bridge in new pos.
+        // But we need to handle units on the bridge.
+
+        const unitsOnBridge = [];
+        this.bridge.cells.forEach(pos => {
+            const cell = this.mapData[pos.y][pos.x];
+            if (cell.type === 'unit') {
+                unitsOnBridge.push({ ...cell, x: pos.x, y: pos.y });
+            }
+        });
+
+        // 1. Restore River/Bank under old bridge
+        this.bridge.cells.forEach(pos => {
+            if (pos.x >= riverStart && pos.x <= riverEnd) {
+                this.mapData[pos.y][pos.x] = {
+                    type: 'hazard',
+                    char: '≈',
+                    css: 'terrain-hazard',
+                    desc: 'Toxic River',
+                    isRiver: true
+                };
+            } else {
+                this.mapData[pos.y][pos.x] = {
+                    type: 'floor',
+                    char: '·',
+                    css: 'terrain-floor',
+                    desc: 'Ground'
+                };
+            }
+        });
+
+        // 2. Calculate new bridge cells
+        this.bridge.cells = [];
+        this.bridge.orientation = newOrientation;
+
+        if (newOrientation === 'vertical') {
+            // Vertical bridge along the river center
+            // Let's say length is same as width of river + overlap? 
+            // Original length was river width (7) + 2 = 9.
+            // So vertical length should be 9 centered at center.
+            const halfLen = 4;
+            const halfWidth = 1; // Width 3 -> +/- 1
+
+            for (let y = center.y - halfLen; y <= center.y + halfLen; y++) {
+                for (let x = center.x - halfWidth; x <= center.x + halfWidth; x++) {
+                    this.bridge.cells.push({ x, y });
+                }
+            }
+        } else {
+            // Horizontal
+            const halfLen = 4;
+            const halfWidth = 1;
+
+            for (let y = center.y - halfWidth; y <= center.y + halfWidth; y++) {
+                for (let x = center.x - halfLen; x <= center.x + halfLen; x++) {
+                    this.bridge.cells.push({ x, y });
+                }
+            }
+        }
+
+        // 3. Draw new bridge
+        this.bridge.cells.forEach(pos => {
+            if (pos.x >= 0 && pos.x < this.width && pos.y >= 0 && pos.y < this.height) {
+                // Check if unit is here (unlikely unless they were flying, but we overwrite)
+                this.mapData[pos.y][pos.x] = {
+                    type: 'floor',
+                    char: '≡',
+                    css: 'terrain-floor',
+                    desc: 'Toll Bridge',
+                    isBridge: true
+                };
+            }
+        });
+
+        // 4. Handle Units
+        unitsOnBridge.forEach(unit => {
+            // Rotate unit position 90 degrees around center
+            // (x, y) -> (-y, x) relative to center
+            const relX = unit.x - center.x;
+            const relY = unit.y - center.y;
+
+            let newRelX, newRelY;
+            if (direction === 'right') { // Clockwise
+                newRelX = -relY;
+                newRelY = relX;
+            } else { // Counter-clockwise
+                newRelX = relY;
+                newRelY = -relX;
+            }
+
+            const newX = center.x + newRelX;
+            const newY = center.y + newRelY;
+
+            // Check if new position is on the new bridge
+            const onNewBridge = this.bridge.cells.some(c => c.x === newX && c.y === newY);
+
+            if (onNewBridge) {
+                // Unit rotates with bridge
+                this.placeEntity(newX, newY, unit.char, unit.css, unit.desc);
+                this.log(`Unit moved with bridge to [${newX},${newY}]`);
+            } else {
+                // Unit fell off!
+                // Check if over river
+                if (newX >= riverStart && newX <= riverEnd) {
+                    this.log(`Unit fell into Toxic River at [${newX},${newY}]! GONE!`);
+                    // Unit lost (don't place it)
+                } else {
+                    this.placeEntity(newX, newY, unit.char, unit.css, unit.desc + " (Prone)");
+                    this.log(`Unit fell onto shore at [${newX},${newY}]!`);
+                }
+            }
+        });
+
+        this.render();
+    }
+}
 export const mapSystem = new TacticalMap(50, 25);
 if (typeof window !== 'undefined') {
     window.mapSystem = mapSystem;
