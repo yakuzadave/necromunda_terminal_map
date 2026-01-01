@@ -1,4 +1,7 @@
-import { DOMParser, Element } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
+import {
+  DOMParser,
+  Element,
+} from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
 if (!Element.prototype.style) {
   Object.defineProperty(Element.prototype, "style", {
@@ -11,11 +14,11 @@ if (!Element.prototype.style) {
           },
           get: (target: any, prop) => {
             return target[prop] || "";
-          }
+          },
         });
       }
       return this._style;
-    }
+    },
   });
 }
 

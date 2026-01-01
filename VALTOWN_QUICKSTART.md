@@ -36,11 +36,9 @@ https://yourname-necromunda.web.val.run
 
 ## What You Get
 
-✅ **Instant deployment** - No build, no config
-✅ **HTTPS by default** - Secure out of the box
-✅ **Always online** - Val Town hosts it for you
-✅ **No maintenance** - Just works
-✅ **Share easily** - Send link to gaming group
+✅ **Instant deployment** - No build, no config ✅ **HTTPS by default** - Secure
+out of the box ✅ **Always online** - Val Town hosts it for you ✅ **No
+maintenance** - Just works ✅ **Share easily** - Send link to gaming group
 
 ---
 
@@ -73,6 +71,7 @@ Try the Manufactorum Raid scenario!
 ## Free Tier Limits
 
 Val Town free tier includes:
+
 - **10 Vals** (you're using 1)
 - **Unlimited HTTP requests**
 - **Always on**
@@ -95,16 +94,19 @@ Made changes locally? Easy update:
 ## Troubleshooting
 
 ### "Import error" or "Module not found"
+
 - Val Town uses Deno runtime
 - Make sure you copied ALL of `valtown.tsx`
 - Check there are no syntax errors
 
 ### Map doesn't load
+
 - Open browser console (F12)
 - Look for JavaScript errors
 - Verify the Val is "Running" in Val Town dashboard
 
 ### Slow loading
+
 - First load might be slow (cold start)
 - Subsequent loads are fast
 - Val Town caches at the edge
@@ -130,6 +132,7 @@ Want `necromunda.yourdomain.com`?
 Don't want Val Town? No problem!
 
 You can deploy the original HTML/CSS/JS files to:
+
 - **Netlify Drop** (drag & drop)
 - **GitHub Pages** (free from repo)
 - **Vercel** (auto-deploy from git)
@@ -140,14 +143,14 @@ See `DEPLOYMENT.md` for full guide.
 
 ## Why Val Town?
 
-| Feature | Val Town | GitHub Pages | Vercel |
-|---------|----------|--------------|--------|
-| Setup time | 3 min | 10 min | 5 min |
-| Build required | No | No | No |
-| Git required | No | Yes | Yes |
-| Custom domain | $10/mo | Free | Free |
-| HTTPS | Auto | Auto | Auto |
-| Edge hosting | Yes | Via CDN | Yes |
+| Feature        | Val Town | GitHub Pages | Vercel |
+| -------------- | -------- | ------------ | ------ |
+| Setup time     | 3 min    | 10 min       | 5 min  |
+| Build required | No       | No           | No     |
+| Git required   | No       | Yes          | Yes    |
+| Custom domain  | $10/mo   | Free         | Free   |
+| HTTPS          | Auto     | Auto         | Auto   |
+| Edge hosting   | Yes      | Via CDN      | Yes    |
 
 Val Town = **Instant gratification** ⚡
 
@@ -173,6 +176,7 @@ Once deployed:
 
 ---
 
-**Pro Tip**: Bookmark your Val Town URL on mobile devices - the interface works great on tablets during games!
+**Pro Tip**: Bookmark your Val Town URL on mobile devices - the interface works
+great on tablets during games!
 
 🎲 **The Emperor Protects** 🎲

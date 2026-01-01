@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { expect, Page } from "@playwright/test";
 
 /**
  * Test Helper Utilities
@@ -11,7 +11,7 @@ import { Page, expect } from '@playwright/test';
  * Wait for the application to fully load and initialize
  */
 export async function waitForAppReady(page: Page) {
-  await page.waitForSelector('#battle-map', { timeout: 5000 });
+  await page.waitForSelector("#battle-map", { timeout: 5000 });
   await page.waitForTimeout(1500); // Auto-generation delay
 }
 
@@ -19,7 +19,7 @@ export async function waitForAppReady(page: Page) {
  * Generate a new battle with a specific scenario
  */
 export async function generateScenario(page: Page, scenarioKey: string) {
-  await page.selectOption('#scenario-select', scenarioKey);
+  await page.selectOption("#scenario-select", scenarioKey);
   await page.click('button:has-text("New Battle")');
   await page.waitForTimeout(500);
 }
@@ -37,10 +37,12 @@ export async function endRound(page: Page) {
  */
 export async function selectUnit(
   page: Page,
-  unitType: 'attacker' | 'defender',
-  index: number = 0
+  unitType: "attacker" | "defender",
+  index: number = 0,
 ) {
-  const cssClass = unitType === 'attacker' ? '.unit-attacker' : '.unit-defender';
+  const cssClass = unitType === "attacker"
+    ? ".unit-attacker"
+    : ".unit-defender";
   const unit = page.locator(`#battle-map ${cssClass}`).nth(index);
   await unit.click();
   return unit;
@@ -50,23 +52,25 @@ export async function selectUnit(
  * Get the status text content
  */
 export async function getStatusText(page: Page): Promise<string> {
-  const statusText = page.locator('#status-text');
-  return (await statusText.textContent()) || '';
+  const statusText = page.locator("#status-text");
+  return (await statusText.textContent()) || "";
 }
 
 /**
  * Check if status contains expected text
  */
 export async function expectStatusContains(page: Page, text: string | RegExp) {
-  const statusText = page.locator('#status-text');
+  const statusText = page.locator("#status-text");
   await expect(statusText).toContainText(text);
 }
 
 /**
  * Get all units of a specific type
  */
-export async function getUnits(page: Page, unitType: 'attacker' | 'defender') {
-  const cssClass = unitType === 'attacker' ? '.unit-attacker' : '.unit-defender';
+export async function getUnits(page: Page, unitType: "attacker" | "defender") {
+  const cssClass = unitType === "attacker"
+    ? ".unit-attacker"
+    : ".unit-defender";
   return page.locator(`#battle-map ${cssClass}`);
 }
 
@@ -75,7 +79,7 @@ export async function getUnits(page: Page, unitType: 'attacker' | 'defender') {
  */
 export async function getUnitCount(
   page: Page,
-  unitType: 'attacker' | 'defender'
+  unitType: "attacker" | "defender",
 ): Promise<number> {
   const units = await getUnits(page, unitType);
   return await units.count();
@@ -109,7 +113,7 @@ export async function getCellsByType(page: Page, terrainType: string) {
  * Check if a specific scenario is loaded
  */
 export async function expectScenario(page: Page, scenarioName: string) {
-  await expectStatusContains(page, new RegExp(scenarioName, 'i'));
+  await expectStatusContains(page, new RegExp(scenarioName, "i"));
 }
 
 /**
@@ -142,7 +146,7 @@ export async function waitForRounds(page: Page, rounds: number) {
  * Get bomb markers (Manufactorum Raid scenario)
  */
 export async function getBombMarkers(page: Page) {
-  return page.locator('#battle-map .obj-marker');
+  return page.locator("#battle-map .obj-marker");
 }
 
 /**
@@ -156,14 +160,14 @@ export async function getLootCaskets(page: Page) {
  * Get fungal cells (Fungal Horror scenario)
  */
 export async function getFungalCells(page: Page) {
-  return page.locator('#battle-map .terrain-fungal');
+  return page.locator("#battle-map .terrain-fungal");
 }
 
 /**
  * Check if map has been generated
  */
 export async function expectMapGenerated(page: Page) {
-  const cells = page.locator('#battle-map .cell');
+  const cells = page.locator("#battle-map .cell");
   const count = await cells.count();
   expect(count).toBe(1250); // 50x25 grid
 }
@@ -181,7 +185,7 @@ export async function takeScreenshot(page: Page, name: string) {
 export async function getElementColor(
   page: Page,
   selector: string,
-  property: 'color' | 'backgroundColor' = 'color'
+  property: "color" | "backgroundColor" = "color",
 ): Promise<string> {
   const element = page.locator(selector);
   return await element.evaluate((el, prop) => {
@@ -192,11 +196,14 @@ export async function getElementColor(
 /**
  * Check if element has animation
  */
-export async function hasAnimation(page: Page, selector: string): Promise<boolean> {
+export async function hasAnimation(
+  page: Page,
+  selector: string,
+): Promise<boolean> {
   const element = page.locator(selector);
   return await element.evaluate((el) => {
     const animation = window.getComputedStyle(el).animation;
-    return animation && animation !== 'none';
+    return animation && animation !== "none";
   });
 }
 
@@ -217,7 +224,7 @@ export async function getControls(page: Page) {
 export async function playScenario(
   page: Page,
   scenarioKey: string,
-  rounds: number = 3
+  rounds: number = 3,
 ) {
   await generateScenario(page, scenarioKey);
   await expectMapGenerated(page);
@@ -233,12 +240,15 @@ export async function playScenario(
 /**
  * Check if victory condition is met
  */
-export async function expectVictory(page: Page, winner?: 'attacker' | 'defender') {
+export async function expectVictory(
+  page: Page,
+  winner?: "attacker" | "defender",
+) {
   const status = await getStatusText(page);
   expect(status).toMatch(/VICTORY|WIN|DEFEAT/i);
 
   if (winner) {
-    const expectedText = winner === 'attacker' ? 'Attacker' : 'Defender';
+    const expectedText = winner === "attacker" ? "Attacker" : "Defender";
     expect(status).toContain(expectedText);
   }
 }
@@ -247,14 +257,17 @@ export async function expectVictory(page: Page, winner?: 'attacker' | 'defender'
  * Get map dimensions
  */
 export async function getMapDimensions(page: Page) {
-  const battleMap = page.locator('#battle-map');
+  const battleMap = page.locator("#battle-map");
   return await battleMap.boundingBox();
 }
 
 /**
  * Check if element is in viewport
  */
-export async function isInViewport(page: Page, selector: string): Promise<boolean> {
+export async function isInViewport(
+  page: Page,
+  selector: string,
+): Promise<boolean> {
   const element = page.locator(selector);
   return await element.isVisible();
 }
@@ -263,13 +276,13 @@ export async function isInViewport(page: Page, selector: string): Promise<boolea
  * Scenarios enum for type safety
  */
 export const Scenarios = {
-  RANDOM: 'random',
-  BUSHWHACK: 'bushwhack',
-  SCRAG: 'scrag',
-  MAYHEM: 'mayhem',
-  MANUFACTORUM_RAID: 'manufactorumRaid',
-  CONVEYER: 'conveyer',
-  FUNGAL_HORROR: 'fungalHorror',
+  RANDOM: "random",
+  BUSHWHACK: "bushwhack",
+  SCRAG: "scrag",
+  MAYHEM: "mayhem",
+  MANUFACTORUM_RAID: "manufactorumRaid",
+  CONVEYER: "conveyer",
+  FUNGAL_HORROR: "fungalHorror",
 } as const;
 
 /**

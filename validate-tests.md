@@ -2,7 +2,9 @@
 
 ## Overview
 
-This document provides a manual validation checklist for the Playwright test suite, since automated test execution requires Deno to be properly installed and configured.
+This document provides a manual validation checklist for the Playwright test
+suite, since automated test execution requires Deno to be properly installed and
+configured.
 
 ## Test Files Created
 
@@ -39,7 +41,8 @@ This document provides a manual validation checklist for the Playwright test sui
    - Playwright configuration
    - Multi-browser setup
    - Auto-start server configuration
-   - **Fixed**: Changed `Deno.env.get` to `process.env` for Node.js compatibility
+   - **Fixed**: Changed `Deno.env.get` to `process.env` for Node.js
+     compatibility
 
 2. **deno.json** (Enhanced)
    - Added test:e2e tasks
@@ -56,6 +59,7 @@ This document provides a manual validation checklist for the Playwright test sui
 ### TypeScript/JavaScript Syntax
 
 All test files use valid TypeScript/JavaScript syntax:
+
 - ✅ Proper imports from `@playwright/test`
 - ✅ Correct async/await patterns
 - ✅ Valid arrow functions and template literals
@@ -64,6 +68,7 @@ All test files use valid TypeScript/JavaScript syntax:
 ### Test Structure
 
 All tests follow Playwright best practices:
+
 - ✅ `test.describe()` for grouping
 - ✅ `test.beforeEach()` for setup
 - ✅ `test()` for individual tests
@@ -73,6 +78,7 @@ All tests follow Playwright best practices:
 ### Selectors
 
 All selectors are valid:
+
 - ✅ ID selectors: `#battle-map`, `#status-text`
 - ✅ Class selectors: `.unit-attacker`, `.terrain-wall`
 - ✅ Text selectors: `button:has-text("New Battle")`
@@ -82,35 +88,35 @@ All selectors are valid:
 
 ### Test Coverage Matrix
 
-| Feature | scenario-loading | unit-interactions | scenario-mechanics | visual-regression |
-|---------|-----------------|-------------------|-------------------|-------------------|
-| Page Load | ✅ | ✅ | - | - |
-| Scenario Dropdown | ✅ | - | - | - |
-| Map Generation | ✅ | ✅ | - | - |
-| Unit Selection | - | ✅ | - | - |
-| Unit Movement | - | ✅ | - | - |
-| Hover Info | - | ✅ | - | - |
-| Bombs | - | - | ✅ | - |
-| Platform | - | - | ✅ | - |
-| Fungal Spread | - | - | ✅ | - |
-| Priority Targets | - | - | ✅ | - |
-| CRT Effects | - | - | - | ✅ |
-| Colors | - | - | - | ✅ |
-| Symbols | - | - | - | ✅ |
-| Animations | - | - | - | ✅ |
-| Responsive Design | - | - | - | ✅ |
+| Feature           | scenario-loading | unit-interactions | scenario-mechanics | visual-regression |
+| ----------------- | ---------------- | ----------------- | ------------------ | ----------------- |
+| Page Load         | ✅               | ✅                | -                  | -                 |
+| Scenario Dropdown | ✅               | -                 | -                  | -                 |
+| Map Generation    | ✅               | ✅                | -                  | -                 |
+| Unit Selection    | -                | ✅                | -                  | -                 |
+| Unit Movement     | -                | ✅                | -                  | -                 |
+| Hover Info        | -                | ✅                | -                  | -                 |
+| Bombs             | -                | -                 | ✅                 | -                 |
+| Platform          | -                | -                 | ✅                 | -                 |
+| Fungal Spread     | -                | -                 | ✅                 | -                 |
+| Priority Targets  | -                | -                 | ✅                 | -                 |
+| CRT Effects       | -                | -                 | -                  | ✅                |
+| Colors            | -                | -                 | -                  | ✅                |
+| Symbols           | -                | -                 | -                  | ✅                |
+| Animations        | -                | -                 | -                  | ✅                |
+| Responsive Design | -                | -                 | -                  | ✅                |
 
 ### Scenario Coverage
 
-| Scenario | Tested | Test File |
-|----------|--------|-----------|
-| Random Ambush | ✅ | scenario-loading.spec.ts |
-| Bushwhack | ✅ | scenario-loading.spec.ts |
-| Scrag | ✅ | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
-| Mayhem | ✅ | scenario-loading.spec.ts |
-| Manufactorum Raid | ✅ | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
-| The Conveyer | ✅ | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
-| Fungal Horror | ✅ | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
+| Scenario          | Tested | Test File                                            |
+| ----------------- | ------ | ---------------------------------------------------- |
+| Random Ambush     | ✅     | scenario-loading.spec.ts                             |
+| Bushwhack         | ✅     | scenario-loading.spec.ts                             |
+| Scrag             | ✅     | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
+| Mayhem            | ✅     | scenario-loading.spec.ts                             |
+| Manufactorum Raid | ✅     | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
+| The Conveyer      | ✅     | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
+| Fungal Horror     | ✅     | scenario-loading.spec.ts, scenario-mechanics.spec.ts |
 
 ## Helper Functions Validation
 
@@ -130,6 +136,7 @@ All helper functions are properly typed and documented:
 ## Browser Coverage
 
 Tests configured for:
+
 - ✅ Chromium (Desktop Chrome)
 - ✅ Firefox (Desktop Firefox)
 - ✅ WebKit (Desktop Safari)
@@ -160,36 +167,42 @@ Tests configured for:
 ## Known Issues Fixed
 
 ### Issue 1: Deno API in Node.js Context
-**Problem:** `Deno.env.get()` used in `playwright.config.ts`
-**Solution:** ✅ Changed to `process.env` for Node.js compatibility
-**Files Fixed:** `playwright.config.ts` (lines 22-24, 69)
+
+**Problem:** `Deno.env.get()` used in `playwright.config.ts` **Solution:** ✅
+Changed to `process.env` for Node.js compatibility **Files Fixed:**
+`playwright.config.ts` (lines 22-24, 69)
 
 ### Issue 2: Module Compatibility
-**Problem:** ES6 modules already in place
-**Solution:** ✅ No changes needed - `scenarios.js` and `app.js` already export correctly
+
+**Problem:** ES6 modules already in place **Solution:** ✅ No changes needed -
+`scenarios.js` and `app.js` already export correctly
 
 ## Manual Testing Checklist
 
 To verify tests work when Deno is available:
 
 ### Pre-flight Checks
+
 - [ ] Deno is installed: `deno --version`
 - [ ] Deno tasks work: `deno task --help`
 - [ ] Server starts: `deno task start`
 - [ ] Server accessible: http://localhost:8000
 
 ### Installation
+
 - [ ] Install Playwright: `deno task playwright:install`
 - [ ] Browsers downloaded successfully
 - [ ] No error messages
 
 ### Test Execution
+
 - [ ] Headless tests run: `deno task test:e2e`
 - [ ] Tests complete without timeout
 - [ ] No syntax errors
 - [ ] Test results displayed
 
 ### Test Results (Expected)
+
 - [ ] All scenario loading tests pass
 - [ ] Unit interaction tests pass
 - [ ] Scenario mechanics tests pass (may have timing issues)
@@ -198,6 +211,7 @@ To verify tests work when Deno is available:
 ## Expected Test Counts
 
 Based on test files:
+
 - **Scenario Loading**: ~15 tests
 - **Unit Interactions**: ~11 tests
 - **Scenario Mechanics**: ~20 tests
@@ -218,6 +232,7 @@ Based on test files:
 ### When Deno is Available
 
 Run in this order:
+
 ```bash
 # 1. Install browsers
 deno task playwright:install
@@ -236,14 +251,17 @@ deno run -A npm:playwright show-report
 
 ### ✅ Validation Complete
 
-All test files, configurations, and helper utilities have been created and validated for:
+All test files, configurations, and helper utilities have been created and
+validated for:
+
 - Syntax correctness
 - Logical structure
 - Test coverage
 - Browser compatibility
 - Configuration accuracy
 
-The test suite is **ready to run** when Deno is properly installed and configured in the system PATH.
+The test suite is **ready to run** when Deno is properly installed and
+configured in the system PATH.
 
 ### Files Summary
 
@@ -264,4 +282,5 @@ The test suite is **ready to run** when Deno is properly installed and configure
 
 **Status: Ready for Testing** ✅
 
-All test infrastructure is in place and validated. Tests are ready to run once Deno is available in the system PATH.
+All test infrastructure is in place and validated. Tests are ready to run once
+Deno is available in the system PATH.

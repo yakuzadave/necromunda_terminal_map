@@ -400,33 +400,39 @@ button:hover, select.scenario-dropdown:hover {
 function getScenarios(): string {
   return `
 // Inline scenarios for Val Town deployment
-const SCENARIOS = ${JSON.stringify({
-    bushwhack: {
-      name: "Bushwhack",
-      description: "Target Enemy Leaders/Champions",
-      attacker: { count: 6 },
-      defender: { count: "D3+2", reinforcements: true }
-    },
-    scrag: {
-      name: "Scrag",
-      description: "Target nominated fighter (Priority Target)",
-      attacker: { count: 6 },
-      defender: { count: "D3+2", reinforcements: true }
-    },
-    mayhem: {
-      name: "Mayhem",
-      description: "Serious Injuries & Escape via short edge",
-      attacker: { count: 6 },
-      defender: { count: "D3+2", reinforcements: true }
-    },
-    manufactorumRaid: {
-      name: "Manufactorum Raid",
-      description: "Plant bombs on vital machinery",
-      attacker: { count: "custom" },
-      defender: { count: "D3+5", reinforcements: true },
-      rules: { reinforcementStart: 2 }
-    }
-  }, null, 2)};
+const SCENARIOS = ${
+    JSON.stringify(
+      {
+        bushwhack: {
+          name: "Bushwhack",
+          description: "Target Enemy Leaders/Champions",
+          attacker: { count: 6 },
+          defender: { count: "D3+2", reinforcements: true },
+        },
+        scrag: {
+          name: "Scrag",
+          description: "Target nominated fighter (Priority Target)",
+          attacker: { count: 6 },
+          defender: { count: "D3+2", reinforcements: true },
+        },
+        mayhem: {
+          name: "Mayhem",
+          description: "Serious Injuries & Escape via short edge",
+          attacker: { count: 6 },
+          defender: { count: "D3+2", reinforcements: true },
+        },
+        manufactorumRaid: {
+          name: "Manufactorum Raid",
+          description: "Plant bombs on vital machinery",
+          attacker: { count: "custom" },
+          defender: { count: "D3+5", reinforcements: true },
+          rules: { reinforcementStart: 2 },
+        },
+      },
+      null,
+      2,
+    )
+  };
 
 // Setup functions embedded
 SCENARIOS.bushwhack.setup = (map) => {

@@ -7,7 +7,9 @@
     "test:e2e:headed": "npx playwright test --headed",
     "test:e2e:ui": "npx playwright test --ui",
     "playwright:install": "deno run -A npm:playwright install",
-    "test:all": "deno task test && deno task test:e2e"
+    "test:all": "deno task test && deno task test:e2e",
+    "lint": "deno lint",
+    "fmt": "deno fmt"
   },
   "compilerOptions": {
     "lib": [
@@ -17,6 +19,14 @@
       "dom.iterable"
     ],
     "strict": true
+  },
+  "lint": {
+    "exclude": [
+      "valtown.tsx",
+      "node_modules/",
+      "playwright-report/",
+      "test-results/"
+    ]
   },
   "imports": {
     "@playwright/test": "npm:@playwright/test@^1.40.0"

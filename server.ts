@@ -24,6 +24,10 @@ async function handler(req: Request): Promise<Response> {
     "/styles.css": "./styles.css",
     "/app.js": "./app.js",
     "/scenarios.js": "./scenarios.js",
+    "/src/rng.js": "./src/rng.js",
+    "/src/los.js": "./src/los.js",
+    "/src/state-manager.js": "./src/state-manager.js",
+    "/src/map-generator-sector-mechanicus.js": "./src/map-generator-sector-mechanicus.js",
   };
 
   const targetFile = fileMap[filepath];
@@ -41,7 +45,9 @@ async function handler(req: Request): Promise<Response> {
   return new Response("Not found", { status: 404 });
 }
 
-console.log(`🎲 Necromunda Tactical Auspex running on http://localhost:${PORT}`);
+console.log(
+  `🎲 Necromunda Tactical Auspex running on http://localhost:${PORT}`,
+);
 console.log(`📡 The Emperor Protects`);
 
 await serve(handler, { port: PORT });

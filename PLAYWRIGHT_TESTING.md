@@ -2,7 +2,9 @@
 
 ## Overview
 
-This project uses Playwright for end-to-end browser testing. The Playwright test suite automatically starts the Deno server in the background, runs comprehensive tests across multiple browsers, and generates detailed reports.
+This project uses Playwright for end-to-end browser testing. The Playwright test
+suite automatically starts the Deno server in the background, runs comprehensive
+tests across multiple browsers, and generates detailed reports.
 
 ## Quick Start
 
@@ -63,6 +65,7 @@ tests/
 **File**: `scenario-loading.spec.ts`
 
 Tests that verify:
+
 - ✅ Page loads with correct title
 - ✅ All scenarios appear in dropdown
 - ✅ Legend displays correctly
@@ -75,6 +78,7 @@ Tests that verify:
 **File**: `unit-interactions.spec.ts`
 
 Tests that verify:
+
 - ✅ Unit information displays on hover
 - ✅ Units can be selected/deselected
 - ✅ Units can move to valid tiles
@@ -89,21 +93,25 @@ Tests that verify:
 Tests scenario-specific features:
 
 **Manufactorum Raid:**
+
 - ✅ 3 bomb markers appear
 - ✅ Bomb information shows on hover
 - ✅ Bombs update on end round
 
 **The Conveyer:**
+
 - ✅ Platform area is marked
 - ✅ Loot caskets are placed
 - ✅ Platform movement rolls occur
 
 **Fungal Horror:**
+
 - ✅ Fungal overgrowth appears
 - ✅ Overgrown areas are marked
 - ✅ Fungal spread processes each round
 
 **Scrag:**
+
 - ✅ Priority target is marked
 - ✅ Priority indicator shows on hover
 
@@ -112,6 +120,7 @@ Tests scenario-specific features:
 **File**: `visual-regression.spec.ts`
 
 Tests visual rendering:
+
 - ✅ CRT overlay effects display
 - ✅ Monospace font is used
 - ✅ Green phosphor color scheme
@@ -136,6 +145,7 @@ Tests run on:
 ### playwright.config.ts
 
 Key features:
+
 - **Auto-start server**: Deno server starts automatically before tests
 - **Parallel execution**: Tests run in parallel for speed
 - **Retry logic**: Flaky tests retry automatically in CI
@@ -153,15 +163,15 @@ The `helpers.ts` file provides reusable functions:
 
 ```typescript
 import {
-  waitForAppReady,
-  generateScenario,
   endRound,
-  selectUnit,
   expectStatusContains,
+  generateScenario,
   Scenarios,
-} from './helpers';
+  selectUnit,
+  waitForAppReady,
+} from "./helpers";
 
-test('example test', async ({ page }) => {
+test("example test", async ({ page }) => {
   await waitForAppReady(page);
   await generateScenario(page, Scenarios.MANUFACTORUM_RAID);
   await expectStatusContains(page, /MANUFACTORUM RAID/i);
@@ -189,19 +199,19 @@ test('example test', async ({ page }) => {
 ### Basic Test Structure
 
 ```typescript
-import { test, expect } from '@playwright/test';
-import { waitForAppReady, generateScenario, Scenarios } from './helpers';
+import { expect, test } from "@playwright/test";
+import { generateScenario, Scenarios, waitForAppReady } from "./helpers";
 
-test.describe('My Test Suite', () => {
+test.describe("My Test Suite", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/');
+    await page.goto("/");
     await waitForAppReady(page);
   });
 
-  test('should do something', async ({ page }) => {
+  test("should do something", async ({ page }) => {
     await generateScenario(page, Scenarios.BUSHWHACK);
 
-    const statusText = page.locator('#status-text');
+    const statusText = page.locator("#status-text");
     await expect(statusText).toContainText(/BUSHWHACK/i);
   });
 });
@@ -210,7 +220,7 @@ test.describe('My Test Suite', () => {
 ### Testing Scenario Mechanics
 
 ```typescript
-test('should plant bomb in Manufactorum Raid', async ({ page }) => {
+test("should plant bomb in Manufactorum Raid", async ({ page }) => {
   await generateScenario(page, Scenarios.MANUFACTORUM_RAID);
 
   // Get first bomb marker
@@ -221,7 +231,7 @@ test('should plant bomb in Manufactorum Raid', async ({ page }) => {
   await expectStatusContains(page, /Not planted/i);
 
   // Select attacker and attempt interaction
-  await selectUnit(page, 'attacker', 0);
+  await selectUnit(page, "attacker", 0);
   // ... test plant interaction
 });
 ```
@@ -229,8 +239,8 @@ test('should plant bomb in Manufactorum Raid', async ({ page }) => {
 ### Testing Visual Elements
 
 ```typescript
-test('should have correct color scheme', async ({ page }) => {
-  const color = await getElementColor(page, '#battle-map', 'color');
+test("should have correct color scheme", async ({ page }) => {
+  const color = await getElementColor(page, "#battle-map", "color");
   expect(color).toMatch(/rgb/);
 });
 ```
@@ -264,8 +274,8 @@ deno run -A npm:playwright test --debug tests/e2e/scenario-loading.spec.ts
 Add `await page.pause()` in your test:
 
 ```typescript
-test('debug test', async ({ page }) => {
-  await page.goto('/');
+test("debug test", async ({ page }) => {
+  await page.goto("/");
   await page.pause(); // Opens Playwright Inspector
   // ... rest of test
 });
@@ -274,10 +284,12 @@ test('debug test', async ({ page }) => {
 ## CI/CD Integration
 
 Tests run automatically on:
+
 - Push to `main` or `develop` branches
 - Pull requests to `main` or `develop`
 
 CI workflow:
+
 1. Checkout code
 2. Install Deno
 3. Run unit tests
@@ -288,6 +300,7 @@ CI workflow:
 ### Test Artifacts
 
 On failure, CI uploads:
+
 - Test results (`playwright-report/`)
 - Screenshots (`screenshots/`)
 - Videos (`test-results/`)
@@ -370,7 +383,7 @@ Don't repeat code - use helpers from `helpers.ts`:
 
 ```typescript
 // ❌ Don't
-await page.selectOption('#scenario-select', 'bushwhack');
+await page.selectOption("#scenario-select", "bushwhack");
 await page.click('button:has-text("New Battle")');
 await page.waitForTimeout(500);
 
@@ -384,11 +397,11 @@ Always wait for elements to be ready:
 
 ```typescript
 // ❌ Don't
-const text = await page.locator('#status-text').textContent();
+const text = await page.locator("#status-text").textContent();
 
 // ✅ Do
-await page.waitForSelector('#status-text');
-const text = await page.locator('#status-text').textContent();
+await page.waitForSelector("#status-text");
+const text = await page.locator("#status-text").textContent();
 ```
 
 ### 3. Use Data Attributes
@@ -408,10 +421,10 @@ await page.click('[data-testid="new-battle"]');
 Use `test.describe()` for organization:
 
 ```typescript
-test.describe('Bomb Mechanics', () => {
-  test('should plant bomb', async ({ page }) => {});
-  test('should disarm bomb', async ({ page }) => {});
-  test('should detonate bomb', async ({ page }) => {});
+test.describe("Bomb Mechanics", () => {
+  test("should plant bomb", async ({ page }) => {});
+  test("should disarm bomb", async ({ page }) => {});
+  test("should detonate bomb", async ({ page }) => {});
 });
 ```
 
@@ -421,7 +434,7 @@ Use `beforeEach` to ensure clean state:
 
 ```typescript
 test.beforeEach(async ({ page }) => {
-  await page.goto('/');
+  await page.goto("/");
   await waitForAppReady(page);
   await generateScenario(page, Scenarios.BUSHWHACK);
 });
@@ -459,6 +472,7 @@ When adding new features:
 
 ---
 
-**Remember**: Well-tested code is reliable code. Every scenario, every interaction, every visual effect should be verified automatically!
+**Remember**: Well-tested code is reliable code. Every scenario, every
+interaction, every visual effect should be verified automatically!
 
 🎲 **Test Well, Deploy with Confidence** 🎲

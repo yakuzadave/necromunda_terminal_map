@@ -1,394 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Necromunda Auspex - Test Suite</title>
     <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background: #0a0a0a;
-            color: #33ff00;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        h1, h2 { color: #66ff33; }
-        .test-section {
-            border: 1px solid #33ff00;
-            padding: 15px;
-            margin: 20px 0;
-            background: rgba(51, 255, 0, 0.05);
-        }
-        .test-pass {
-            color: #00ff00;
-            font-weight: bold;
-        }
-        .test-fail {
-            color: #ff3333;
-            font-weight: bold;
-        }
-        .test-result {
-            margin: 5px 0;
-            padding: 5px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-        button {
-            background: #33ff00;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            margin: 5px;
-        }
-        button:hover { background: #66ff33; }
-        #results { margin-top: 20px; }
-        .summary {
-            font-size: 1.2em;
-            margin: 20px 0;
-            padding: 10px;
-            border: 2px solid #33ff00;
-        }
+      body {
+        font-family: "Courier New", monospace;
+        background: #0a0a0a;
+        color: #33ff00;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      h1, h2 {
+        color: #66ff33;
+      }
+      .test-section {
+        border: 1px solid #33ff00;
+        padding: 15px;
+        margin: 20px 0;
+        background: rgba(51, 255, 0, 0.05);
+      }
+      .test-pass {
+        color: #00ff00;
+        font-weight: bold;
+      }
+      .test-fail {
+        color: #ff3333;
+        font-weight: bold;
+      }
+      .test-result {
+        margin: 5px 0;
+        padding: 5px;
+        background: rgba(0, 0, 0, 0.3);
+      }
+      button {
+        background: #33ff00;
+        color: #000;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        margin: 5px;
+      }
+      button:hover {
+        background: #66ff33;
+      }
+      #results {
+        margin-top: 20px;
+      }
+      .summary {
+        font-size: 1.2em;
+        margin: 20px 0;
+        padding: 10px;
+        border: 2px solid #33ff00;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <h1>⚔️ Necromunda Tactical Auspex - Test Suite</h1>
 
-<h1>⚔️ Necromunda Tactical Auspex - Test Suite</h1>
+    <div class="test-section">
+      <h2>Test Controls</h2>
+      <button onclick="runAllTests()">Run All Tests</button>
+      <button onclick="testScenarioLoading()">Test Scenario Loading</button>
+      <button onclick="testMapGeneration()">Test Map Generation</button>
+      <button onclick="testUnitDeployment()">Test Unit Deployment</button>
+      <button onclick="testBombMechanics()">
+        Test Bomb Mechanics (Manufactorum Raid)
+      </button>
+      <button onclick="testPlatformMechanics()">
+        Test Platform Mechanics (Conveyer)
+      </button>
+      <button onclick="testFungalSpread()">
+        Test Fungal Spread (Fungal Horror)
+      </button>
+      <button onclick="clearResults()">Clear Results</button>
+    </div>
 
-<div class="test-section">
-    <h2>Test Controls</h2>
-    <button onclick="runAllTests()">Run All Tests</button>
-    <button onclick="testScenarioLoading()">Test Scenario Loading</button>
-    <button onclick="testMapGeneration()">Test Map Generation</button>
-    <button onclick="testUnitDeployment()">Test Unit Deployment</button>
-    <button onclick="testBombMechanics()">Test Bomb Mechanics (Manufactorum Raid)</button>
-    <button onclick="testPlatformMechanics()">Test Platform Mechanics (Conveyer)</button>
-    <button onclick="testFungalSpread()">Test Fungal Spread (Fungal Horror)</button>
-    <button onclick="clearResults()">Clear Results</button>
-</div>
+    <div id="results"></div>
 
-<div id="results"></div>
+    <script src="scenarios.js"></script>
+    <script src="app.js"></script>
+    <script>
+      // Test utilities
+      let testResults = [];
+      let testsPassed = 0;
+      let testsFailed = 0;
 
-<script src="scenarios.js"></script>
-<script src="app.js"></script>
-<script>
+      function assert(condition, testName, details = "") {
+        const result = {
+          name: testName,
+          passed: condition,
+          details: details,
+        };
+        testResults.push(result);
 
-// Test utilities
-let testResults = [];
-let testsPassed = 0;
-let testsFailed = 0;
+        if (condition) {
+          testsPassed++;
+        } else {
+          testsFailed++;
+        }
 
-function assert(condition, testName, details = '') {
-    const result = {
-        name: testName,
-        passed: condition,
-        details: details
-    };
-    testResults.push(result);
+        return condition;
+      }
 
-    if (condition) {
-        testsPassed++;
-    } else {
-        testsFailed++;
-    }
-
-    return condition;
-}
-
-function displayResults() {
-    const resultsDiv = document.getElementById('results');
-    let html = `<div class="summary">
+      function displayResults() {
+        const resultsDiv = document.getElementById("results");
+        let html = `<div class="summary">
         <strong>Test Results:</strong>
         <span class="test-pass">${testsPassed} passed</span> /
         <span class="test-fail">${testsFailed} failed</span> /
         <strong>${testResults.length} total</strong>
     </div>`;
 
-    testResults.forEach(result => {
-        const cssClass = result.passed ? 'test-pass' : 'test-fail';
-        const icon = result.passed ? '✓' : '✗';
-        html += `<div class="test-result">
+        testResults.forEach((result) => {
+          const cssClass = result.passed ? "test-pass" : "test-fail";
+          const icon = result.passed ? "✓" : "✗";
+          html += `<div class="test-result">
             <span class="${cssClass}">${icon} ${result.name}</span>
-            ${result.details ? `<br>&nbsp;&nbsp;&nbsp;${result.details}` : ''}
+            ${
+            result.details
+              ? `<br>&nbsp;&nbsp;&nbsp;${result.details}`
+              : ""
+          }
         </div>`;
-    });
+        });
 
-    resultsDiv.innerHTML = html;
-}
+        resultsDiv.innerHTML = html;
+      }
 
-function clearResults() {
-    testResults = [];
-    testsPassed = 0;
-    testsFailed = 0;
-    document.getElementById('results').innerHTML = '';
-}
+      function clearResults() {
+        testResults = [];
+        testsPassed = 0;
+        testsFailed = 0;
+        document.getElementById("results").innerHTML = "";
+      }
 
-// Test: Scenario Loading
-function testScenarioLoading() {
-    clearResults();
-    console.log('Testing scenario loading...');
+      // Test: Scenario Loading
+      function testScenarioLoading() {
+        clearResults();
+        console.log("Testing scenario loading...");
 
-    assert(typeof SCENARIOS !== 'undefined', 'SCENARIOS object exists');
-    assert(SCENARIOS.bushwhack !== undefined, 'Bushwhack scenario exists');
-    assert(SCENARIOS.scrag !== undefined, 'Scrag scenario exists');
-    assert(SCENARIOS.mayhem !== undefined, 'Mayhem scenario exists');
-    assert(SCENARIOS.manufactorumRaid !== undefined, 'Manufactorum Raid scenario exists');
-    assert(SCENARIOS.conveyer !== undefined, 'The Conveyer scenario exists');
-    assert(SCENARIOS.fungalHorror !== undefined, 'Fungal Horror scenario exists');
+        assert(
+          typeof SCENARIOS !== "undefined",
+          "SCENARIOS object exists",
+        );
+        assert(
+          SCENARIOS.bushwhack !== undefined,
+          "Bushwhack scenario exists",
+        );
+        assert(SCENARIOS.scrag !== undefined, "Scrag scenario exists");
+        assert(
+          SCENARIOS.mayhem !== undefined,
+          "Mayhem scenario exists",
+        );
+        assert(
+          SCENARIOS.manufactorumRaid !== undefined,
+          "Manufactorum Raid scenario exists",
+        );
+        assert(
+          SCENARIOS.conveyer !== undefined,
+          "The Conveyer scenario exists",
+        );
+        assert(
+          SCENARIOS.fungalHorror !== undefined,
+          "Fungal Horror scenario exists",
+        );
 
-    // Check scenario structure
-    const checkScenario = (key, name) => {
-        const scenario = SCENARIOS[key];
-        assert(scenario.name !== undefined, `${name} has name property`);
-        assert(scenario.description !== undefined, `${name} has description`);
-        assert(scenario.attacker !== undefined, `${name} has attacker config`);
-        assert(scenario.defender !== undefined, `${name} has defender config`);
-    };
+        // Check scenario structure
+        const checkScenario = (key, name) => {
+          const scenario = SCENARIOS[key];
+          assert(
+            scenario.name !== undefined,
+            `${name} has name property`,
+          );
+          assert(
+            scenario.description !== undefined,
+            `${name} has description`,
+          );
+          assert(
+            scenario.attacker !== undefined,
+            `${name} has attacker config`,
+          );
+          assert(
+            scenario.defender !== undefined,
+            `${name} has defender config`,
+          );
+        };
 
-    checkScenario('bushwhack', 'Bushwhack');
-    checkScenario('manufactorumRaid', 'Manufactorum Raid');
-    checkScenario('conveyer', 'The Conveyer');
-    checkScenario('fungalHorror', 'Fungal Horror');
+        checkScenario("bushwhack", "Bushwhack");
+        checkScenario("manufactorumRaid", "Manufactorum Raid");
+        checkScenario("conveyer", "The Conveyer");
+        checkScenario("fungalHorror", "Fungal Horror");
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Test: Map Generation
-function testMapGeneration() {
-    clearResults();
-    console.log('Testing map generation...');
+      // Test: Map Generation
+      function testMapGeneration() {
+        clearResults();
+        console.log("Testing map generation...");
 
-    const testMap = new TacticalMap(50, 25);
+        const testMap = new TacticalMap(50, 25);
 
-    assert(testMap.width === 50, 'Map width is 50');
-    assert(testMap.height === 25, 'Map height is 25');
-    assert(typeof testMap.generate === 'function', 'generate() method exists');
-    assert(typeof testMap.rand === 'function', 'rand() method exists');
+        assert(testMap.width === 50, "Map width is 50");
+        assert(testMap.height === 25, "Map height is 25");
+        assert(
+          typeof testMap.generate === "function",
+          "generate() method exists",
+        );
+        assert(
+          typeof testMap.rand === "function",
+          "rand() method exists",
+        );
 
-    // Generate map with default scenario
-    testMap.generate();
+        // Generate map with default scenario
+        testMap.generate();
 
-    assert(testMap.mapData.length === 25, 'Map has 25 rows');
-    assert(testMap.mapData[0].length === 50, 'Each row has 50 cells');
-    assert(testMap.currentScenario !== null, 'Scenario was loaded');
+        assert(testMap.mapData.length === 25, "Map has 25 rows");
+        assert(
+          testMap.mapData[0].length === 50,
+          "Each row has 50 cells",
+        );
+        assert(testMap.currentScenario !== null, "Scenario was loaded");
 
-    // Check cell types
-    let hasWalls = false;
-    let hasFloor = false;
-    let hasUnits = false;
+        // Check cell types
+        let hasWalls = false;
+        let hasFloor = false;
+        let hasUnits = false;
 
-    for (let y = 0; y < testMap.height; y++) {
-        for (let x = 0; x < testMap.width; x++) {
+        for (let y = 0; y < testMap.height; y++) {
+          for (let x = 0; x < testMap.width; x++) {
             const cell = testMap.mapData[y][x];
-            if (cell.type === 'wall') hasWalls = true;
-            if (cell.type === 'floor') hasFloor = true;
-            if (cell.type === 'unit') hasUnits = true;
+            if (cell.type === "wall") hasWalls = true;
+            if (cell.type === "floor") hasFloor = true;
+            if (cell.type === "unit") hasUnits = true;
+          }
         }
-    }
 
-    assert(hasWalls, 'Map contains walls');
-    assert(hasFloor, 'Map contains floor tiles');
-    assert(hasUnits, 'Map contains units');
+        assert(hasWalls, "Map contains walls");
+        assert(hasFloor, "Map contains floor tiles");
+        assert(hasUnits, "Map contains units");
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Test: Unit Deployment
-function testUnitDeployment() {
-    clearResults();
-    console.log('Testing unit deployment...');
+      // Test: Unit Deployment
+      function testUnitDeployment() {
+        clearResults();
+        console.log("Testing unit deployment...");
 
-    const testMap = new TacticalMap(50, 25);
-    testMap.generate('bushwhack');
+        const testMap = new TacticalMap(50, 25);
+        testMap.generate("bushwhack");
 
-    const attackers = testMap.getUnitsByType('M');
-    const defenders = testMap.getUnitsByType('G');
+        const attackers = testMap.getUnitsByType("M");
+        const defenders = testMap.getUnitsByType("G");
 
-    assert(attackers.length > 0, `Attackers deployed: ${attackers.length}`, `Expected ~6, got ${attackers.length}`);
-    assert(defenders.length > 0, `Defenders deployed: ${defenders.length}`, `Expected 3-5, got ${defenders.length}`);
+        assert(
+          attackers.length > 0,
+          `Attackers deployed: ${attackers.length}`,
+          `Expected ~6, got ${attackers.length}`,
+        );
+        assert(
+          defenders.length > 0,
+          `Defenders deployed: ${defenders.length}`,
+          `Expected 3-5, got ${defenders.length}`,
+        );
 
-    // Check attacker positions (should be near bottom)
-    let attackersInCorrectArea = 0;
-    attackers.forEach(unit => {
-        if (unit.y > testMap.height - 8) attackersInCorrectArea++;
-    });
-    assert(attackersInCorrectArea === attackers.length, 'All attackers in deployment zone');
+        // Check attacker positions (should be near bottom)
+        let attackersInCorrectArea = 0;
+        attackers.forEach((unit) => {
+          if (unit.y > testMap.height - 8) attackersInCorrectArea++;
+        });
+        assert(
+          attackersInCorrectArea === attackers.length,
+          "All attackers in deployment zone",
+        );
 
-    // Check defender positions (should be near top)
-    let defendersInCorrectArea = 0;
-    defenders.forEach(unit => {
-        if (unit.y < testMap.height / 2) defendersInCorrectArea++;
-    });
-    assert(defendersInCorrectArea === defenders.length, 'All defenders in deployment zone');
+        // Check defender positions (should be near top)
+        let defendersInCorrectArea = 0;
+        defenders.forEach((unit) => {
+          if (unit.y < testMap.height / 2) defendersInCorrectArea++;
+        });
+        assert(
+          defendersInCorrectArea === defenders.length,
+          "All defenders in deployment zone",
+        );
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Test: Bomb Mechanics (Manufactorum Raid)
-function testBombMechanics() {
-    clearResults();
-    console.log('Testing bomb mechanics...');
+      // Test: Bomb Mechanics (Manufactorum Raid)
+      function testBombMechanics() {
+        clearResults();
+        console.log("Testing bomb mechanics...");
 
-    const testMap = new TacticalMap(50, 25);
-    testMap.generate('manufactorumRaid');
+        const testMap = new TacticalMap(50, 25);
+        testMap.generate("manufactorumRaid");
 
-    assert(testMap.bombs !== undefined, 'Bombs array exists');
-    assert(testMap.bombs.length === 3, `3 bombs placed: ${testMap.bombs.length}`);
+        assert(testMap.bombs !== undefined, "Bombs array exists");
+        assert(
+          testMap.bombs.length === 3,
+          `3 bombs placed: ${testMap.bombs.length}`,
+        );
 
-    // Check bomb properties
-    testMap.bombs.forEach((bomb, index) => {
-        assert(bomb.x !== undefined, `Bomb ${index + 1} has X coordinate`);
-        assert(bomb.y !== undefined, `Bomb ${index + 1} has Y coordinate`);
-        assert(bomb.planted === false, `Bomb ${index + 1} starts unplanted`);
-        assert(bomb.armed === false, `Bomb ${index + 1} starts unarmed`);
-        assert(bomb.counter === 0, `Bomb ${index + 1} counter starts at 0`);
-    });
+        // Check bomb properties
+        testMap.bombs.forEach((bomb, index) => {
+          assert(
+            bomb.x !== undefined,
+            `Bomb ${index + 1} has X coordinate`,
+          );
+          assert(
+            bomb.y !== undefined,
+            `Bomb ${index + 1} has Y coordinate`,
+          );
+          assert(
+            bomb.planted === false,
+            `Bomb ${index + 1} starts unplanted`,
+          );
+          assert(
+            bomb.armed === false,
+            `Bomb ${index + 1} starts unarmed`,
+          );
+          assert(
+            bomb.counter === 0,
+            `Bomb ${index + 1} counter starts at 0`,
+          );
+        });
 
-    // Test bomb distance requirements
-    const minDist = 12;
-    let bombsCorrectlySpaced = true;
-    for (let i = 0; i < testMap.bombs.length; i++) {
-        for (let j = i + 1; j < testMap.bombs.length; j++) {
+        // Test bomb distance requirements
+        const minDist = 12;
+        let bombsCorrectlySpaced = true;
+        for (let i = 0; i < testMap.bombs.length; i++) {
+          for (let j = i + 1; j < testMap.bombs.length; j++) {
             const dist = Math.sqrt(
-                Math.pow(testMap.bombs[i].x - testMap.bombs[j].x, 2) +
-                Math.pow(testMap.bombs[i].y - testMap.bombs[j].y, 2)
+              Math.pow(testMap.bombs[i].x - testMap.bombs[j].x, 2) +
+                Math.pow(testMap.bombs[i].y - testMap.bombs[j].y, 2),
             );
             if (dist < minDist) {
-                bombsCorrectlySpaced = false;
-                break;
+              bombsCorrectlySpaced = false;
+              break;
             }
+          }
         }
-    }
-    assert(bombsCorrectlySpaced, 'Bombs spaced at least 12 cells apart');
+        assert(
+          bombsCorrectlySpaced,
+          "Bombs spaced at least 12 cells apart",
+        );
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Test: Platform Mechanics (The Conveyer)
-function testPlatformMechanics() {
-    clearResults();
-    console.log('Testing platform mechanics...');
+      // Test: Platform Mechanics (The Conveyer)
+      function testPlatformMechanics() {
+        clearResults();
+        console.log("Testing platform mechanics...");
 
-    const testMap = new TacticalMap(50, 25);
-    testMap.generate('conveyer');
+        const testMap = new TacticalMap(50, 25);
+        testMap.generate("conveyer");
 
-    assert(testMap.platform !== undefined, 'Platform object exists');
-    assert(testMap.platform.centerX !== undefined, 'Platform has center X');
-    assert(testMap.platform.centerY !== undefined, 'Platform has center Y');
-    assert(testMap.platform.radius === 6, 'Platform radius is 6');
-    assert(testMap.platform.stationaryTurns === 0, 'Platform starts at 0 stationary turns');
+        assert(
+          testMap.platform !== undefined,
+          "Platform object exists",
+        );
+        assert(
+          testMap.platform.centerX !== undefined,
+          "Platform has center X",
+        );
+        assert(
+          testMap.platform.centerY !== undefined,
+          "Platform has center Y",
+        );
+        assert(testMap.platform.radius === 6, "Platform radius is 6");
+        assert(
+          testMap.platform.stationaryTurns === 0,
+          "Platform starts at 0 stationary turns",
+        );
 
-    assert(testMap.lootCaskets !== undefined, 'Loot caskets array exists');
-    assert(testMap.lootCaskets.length > 0, `Loot caskets placed: ${testMap.lootCaskets.length}`);
+        assert(
+          testMap.lootCaskets !== undefined,
+          "Loot caskets array exists",
+        );
+        assert(
+          testMap.lootCaskets.length > 0,
+          `Loot caskets placed: ${testMap.lootCaskets.length}`,
+        );
 
-    // Check platform marking
-    const cx = testMap.platform.centerX;
-    const cy = testMap.platform.centerY;
-    const platformCenter = testMap.mapData[cy][cx];
-    assert(platformCenter.onPlatform === true, 'Center of platform is marked');
+        // Check platform marking
+        const cx = testMap.platform.centerX;
+        const cy = testMap.platform.centerY;
+        const platformCenter = testMap.mapData[cy][cx];
+        assert(
+          platformCenter.onPlatform === true,
+          "Center of platform is marked",
+        );
 
-    // Check defenders on platform
-    const defenders = testMap.getUnitsByType('G');
-    let defendersOnPlatform = 0;
-    defenders.forEach(unit => {
-        if (testMap.mapData[unit.y][unit.x].onPlatform) {
+        // Check defenders on platform
+        const defenders = testMap.getUnitsByType("G");
+        let defendersOnPlatform = 0;
+        defenders.forEach((unit) => {
+          if (testMap.mapData[unit.y][unit.x].onPlatform) {
             defendersOnPlatform++;
-        }
-    });
-    assert(defendersOnPlatform === defenders.length, `All defenders on platform: ${defendersOnPlatform}/${defenders.length}`);
+          }
+        });
+        assert(
+          defendersOnPlatform === defenders.length,
+          `All defenders on platform: ${defendersOnPlatform}/${defenders.length}`,
+        );
 
-    // Check attackers NOT on platform
-    const attackers = testMap.getUnitsByType('M');
-    let attackersOffPlatform = 0;
-    attackers.forEach(unit => {
-        if (!testMap.mapData[unit.y][unit.x].onPlatform) {
+        // Check attackers NOT on platform
+        const attackers = testMap.getUnitsByType("M");
+        let attackersOffPlatform = 0;
+        attackers.forEach((unit) => {
+          if (!testMap.mapData[unit.y][unit.x].onPlatform) {
             attackersOffPlatform++;
-        }
-    });
-    assert(attackersOffPlatform === attackers.length, `All attackers off platform: ${attackersOffPlatform}/${attackers.length}`);
+          }
+        });
+        assert(
+          attackersOffPlatform === attackers.length,
+          `All attackers off platform: ${attackersOffPlatform}/${attackers.length}`,
+        );
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Test: Fungal Spread (Fungal Horror)
-function testFungalSpread() {
-    clearResults();
-    console.log('Testing fungal spread mechanics...');
+      // Test: Fungal Spread (Fungal Horror)
+      function testFungalSpread() {
+        clearResults();
+        console.log("Testing fungal spread mechanics...");
 
-    const testMap = new TacticalMap(50, 25);
-    testMap.generate('fungalHorror');
+        const testMap = new TacticalMap(50, 25);
+        testMap.generate("fungalHorror");
 
-    assert(testMap.fungalMarkers !== undefined, 'Fungal markers array exists');
-    assert(testMap.fungalMarkers.length === 1, `Initial fungal marker placed: ${testMap.fungalMarkers.length}`);
-    assert(testMap.maxFungalMarkers === 9, 'Max fungal markers set to 9');
+        assert(
+          testMap.fungalMarkers !== undefined,
+          "Fungal markers array exists",
+        );
+        assert(
+          testMap.fungalMarkers.length === 1,
+          `Initial fungal marker placed: ${testMap.fungalMarkers.length}`,
+        );
+        assert(
+          testMap.maxFungalMarkers === 9,
+          "Max fungal markers set to 9",
+        );
 
-    // Check initial marker properties
-    const marker = testMap.fungalMarkers[0];
-    assert(marker.x !== undefined, 'Marker has X coordinate');
-    assert(marker.y !== undefined, 'Marker has Y coordinate');
-    assert(marker.radius === 6, 'Marker radius is 6');
+        // Check initial marker properties
+        const marker = testMap.fungalMarkers[0];
+        assert(marker.x !== undefined, "Marker has X coordinate");
+        assert(marker.y !== undefined, "Marker has Y coordinate");
+        assert(marker.radius === 6, "Marker radius is 6");
 
-    // Check overgrown area marking
-    const cx = marker.x;
-    const cy = marker.y;
-    let overgrownCells = 0;
+        // Check overgrown area marking
+        const cx = marker.x;
+        const cy = marker.y;
+        let overgrownCells = 0;
 
-    for (let y = 0; y < testMap.height; y++) {
-        for (let x = 0; x < testMap.width; x++) {
+        for (let y = 0; y < testMap.height; y++) {
+          for (let x = 0; x < testMap.width; x++) {
             if (testMap.mapData[y][x].overgrown) {
-                overgrownCells++;
+              overgrownCells++;
             }
+          }
         }
-    }
 
-    assert(overgrownCells > 0, `Overgrown cells marked: ${overgrownCells}`);
+        assert(
+          overgrownCells > 0,
+          `Overgrown cells marked: ${overgrownCells}`,
+        );
 
-    // Test center cell is overgrown
-    assert(testMap.mapData[cy][cx].overgrown === true, 'Center of fungal marker is overgrown');
+        // Test center cell is overgrown
+        assert(
+          testMap.mapData[cy][cx].overgrown === true,
+          "Center of fungal marker is overgrown",
+        );
 
-    displayResults();
-}
+        displayResults();
+      }
 
-// Run all tests
-function runAllTests() {
-    clearResults();
-    testScenarioLoading();
-    const oldResults = [...testResults];
-    clearResults();
+      // Run all tests
+      function runAllTests() {
+        clearResults();
+        testScenarioLoading();
+        const oldResults = [...testResults];
+        clearResults();
 
-    testResults = oldResults;
-    testMapGeneration();
-    const oldResults2 = [...testResults];
-    clearResults();
+        testResults = oldResults;
+        testMapGeneration();
+        const oldResults2 = [...testResults];
+        clearResults();
 
-    testResults = oldResults2;
-    testUnitDeployment();
-    const oldResults3 = [...testResults];
-    clearResults();
+        testResults = oldResults2;
+        testUnitDeployment();
+        const oldResults3 = [...testResults];
+        clearResults();
 
-    testResults = oldResults3;
-    testBombMechanics();
-    const oldResults4 = [...testResults];
-    clearResults();
+        testResults = oldResults3;
+        testBombMechanics();
+        const oldResults4 = [...testResults];
+        clearResults();
 
-    testResults = oldResults4;
-    testPlatformMechanics();
-    const oldResults5 = [...testResults];
-    clearResults();
+        testResults = oldResults4;
+        testPlatformMechanics();
+        const oldResults5 = [...testResults];
+        clearResults();
 
-    testResults = oldResults5;
-    testFungalSpread();
+        testResults = oldResults5;
+        testFungalSpread();
 
-    console.log('All tests complete!');
-}
+        console.log("All tests complete!");
+      }
 
-// Auto-run tests on load
-window.onload = () => {
-    console.log('Test suite loaded. Click "Run All Tests" to begin.');
-};
-
-</script>
-
-</body>
+      // Auto-run tests on load
+      window.onload = () => {
+        console.log(
+          'Test suite loaded. Click "Run All Tests" to begin.',
+        );
+      };
+    </script>
+  </body>
 </html>

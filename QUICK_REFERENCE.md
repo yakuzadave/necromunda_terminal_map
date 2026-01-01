@@ -3,11 +3,13 @@
 ## Testing Commands
 
 ### Setup (First Time Only)
+
 ```bash
 deno task playwright:install
 ```
 
 ### Running Tests
+
 ```bash
 # All E2E tests (headless)
 deno task test:e2e
@@ -23,6 +25,7 @@ deno task test:all
 ```
 
 ### Development
+
 ```bash
 # Start dev server with watch mode
 deno task dev
@@ -35,6 +38,7 @@ deno task test
 ```
 
 ### Debugging
+
 ```bash
 # Run specific test file
 deno run -A npm:playwright test tests/e2e/scenario-loading.spec.ts
@@ -48,53 +52,57 @@ deno run -A npm:playwright show-report
 
 ## Test Files
 
-| File | Purpose |
-|------|---------|
-| `scenario-loading.spec.ts` | Scenario loading and generation |
-| `unit-interactions.spec.ts` | Unit selection and movement |
-| `scenario-mechanics.spec.ts` | Scenario-specific features |
-| `visual-regression.spec.ts` | Visual effects and styling |
-| `helpers.ts` | Reusable test utilities |
+| File                         | Purpose                         |
+| ---------------------------- | ------------------------------- |
+| `scenario-loading.spec.ts`   | Scenario loading and generation |
+| `unit-interactions.spec.ts`  | Unit selection and movement     |
+| `scenario-mechanics.spec.ts` | Scenario-specific features      |
+| `visual-regression.spec.ts`  | Visual effects and styling      |
+| `helpers.ts`                 | Reusable test utilities         |
 
 ## Helper Functions
 
 ```typescript
 import {
-  waitForAppReady,      // Wait for app to load
-  generateScenario,     // Start a new scenario
-  endRound,             // End current round
-  selectUnit,           // Select a unit
-  getStatusText,        // Get status panel text
+  endRound, // End current round
   expectStatusContains, // Assert status content
-  Scenarios,            // Scenario enum
-} from './helpers';
+  generateScenario, // Start a new scenario
+  getStatusText, // Get status panel text
+  Scenarios, // Scenario enum
+  selectUnit, // Select a unit
+  waitForAppReady, // Wait for app to load
+} from "./helpers";
 ```
 
 ## Common Patterns
 
 ### Basic Test
+
 ```typescript
-test('my test', async ({ page }) => {
-  await page.goto('/');
+test("my test", async ({ page }) => {
+  await page.goto("/");
   await waitForAppReady(page);
   // ... test code
 });
 ```
 
 ### Generate Scenario
+
 ```typescript
 await generateScenario(page, Scenarios.MANUFACTORUM_RAID);
 await expectStatusContains(page, /MANUFACTORUM RAID/i);
 ```
 
 ### Select and Move Unit
+
 ```typescript
-const unit = await selectUnit(page, 'attacker', 0);
-const floor = page.locator('.terrain-floor').first();
+const unit = await selectUnit(page, "attacker", 0);
+const floor = page.locator(".terrain-floor").first();
 await floor.click();
 ```
 
 ### End Round
+
 ```typescript
 await endRound(page);
 const round = await getCurrentRound(page);
@@ -127,30 +135,30 @@ deno.json                   # Task definitions
 
 ## Scenarios
 
-| Scenario | Key |
-|----------|-----|
-| Random Ambush | `random` |
-| Bushwhack | `bushwhack` |
-| Scrag | `scrag` |
-| Mayhem | `mayhem` |
+| Scenario          | Key                |
+| ----------------- | ------------------ |
+| Random Ambush     | `random`           |
+| Bushwhack         | `bushwhack`        |
+| Scrag             | `scrag`            |
+| Mayhem            | `mayhem`           |
 | Manufactorum Raid | `manufactorumRaid` |
-| The Conveyer | `conveyer` |
-| Fungal Horror | `fungalHorror` |
+| The Conveyer      | `conveyer`         |
+| Fungal Horror     | `fungalHorror`     |
 
 ## Key Selectors
 
-| Element | Selector |
-|---------|----------|
-| Battle Map | `#battle-map` |
-| Status Panel | `#status-text` |
+| Element           | Selector           |
+| ----------------- | ------------------ |
+| Battle Map        | `#battle-map`      |
+| Status Panel      | `#status-text`     |
 | Scenario Dropdown | `#scenario-select` |
-| Attacker Unit | `.unit-attacker` |
-| Defender Unit | `.unit-defender` |
-| Wall | `.terrain-wall` |
-| Floor | `.terrain-floor` |
-| Hazard | `.terrain-hazard` |
-| Objective | `.obj-marker` |
-| Fungal | `.terrain-fungal` |
+| Attacker Unit     | `.unit-attacker`   |
+| Defender Unit     | `.unit-defender`   |
+| Wall              | `.terrain-wall`    |
+| Floor             | `.terrain-floor`   |
+| Hazard            | `.terrain-hazard`  |
+| Objective         | `.obj-marker`      |
+| Fungal            | `.terrain-fungal`  |
 
 ## Documentation
 

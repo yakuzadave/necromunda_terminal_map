@@ -2,14 +2,19 @@
 
 ## Overview
 
-The Necromunda Tactical Auspex project has been enhanced with comprehensive Playwright testing infrastructure. The Deno server now runs automatically in the background during testing, and extensive E2E tests verify functionality across multiple browsers.
+The Necromunda Tactical Auspex project has been enhanced with comprehensive
+Playwright testing infrastructure. The Deno server now runs automatically in the
+background during testing, and extensive E2E tests verify functionality across
+multiple browsers.
 
 ## What Was Added
 
 ### 1. Configuration Files
 
 #### `deno.json` - Enhanced Task Configuration
+
 Added new tasks for testing:
+
 - `test:e2e` - Run Playwright E2E tests
 - `test:e2e:headed` - Run tests with visible browser
 - `test:e2e:ui` - Run tests with interactive UI
@@ -19,7 +24,9 @@ Added new tasks for testing:
 Also added npm imports for Playwright package.
 
 #### `playwright.config.ts` - Playwright Configuration
+
 Comprehensive configuration including:
+
 - **Auto-start server**: Deno server starts automatically before tests
 - **Multi-browser**: Chromium, Firefox, WebKit, Mobile Chrome, Mobile Safari
 - **Parallel execution**: Tests run in parallel for speed
@@ -30,7 +37,9 @@ Comprehensive configuration including:
 ### 2. Test Files
 
 #### `tests/e2e/scenario-loading.spec.ts`
+
 Tests for scenario loading and generation:
+
 - Page loads with correct title
 - All scenarios appear in dropdown
 - Legend displays correctly
@@ -40,7 +49,9 @@ Tests for scenario loading and generation:
 - Random scenario generation works
 
 #### `tests/e2e/unit-interactions.spec.ts`
+
 Tests for user interactions:
+
 - Unit information displays on hover
 - Units can be selected and deselected
 - Units can move to valid tiles
@@ -50,7 +61,9 @@ Tests for user interactions:
 - Terrain information displays correctly
 
 #### `tests/e2e/scenario-mechanics.spec.ts`
+
 Tests for scenario-specific features:
+
 - **Manufactorum Raid**: Bomb markers, planting, disarming, detonation
 - **The Conveyer**: Platform marking, loot caskets, platform movement
 - **Fungal Horror**: Overgrowth display, spread mechanics
@@ -58,7 +71,9 @@ Tests for scenario-specific features:
 - Round management and incrementing
 
 #### `tests/e2e/visual-regression.spec.ts`
+
 Tests for visual rendering:
+
 - CRT overlay effects
 - Monospace font usage
 - Green phosphor color scheme
@@ -70,7 +85,9 @@ Tests for visual rendering:
 - Color coding for units and terrain
 
 #### `tests/e2e/helpers.ts`
+
 Reusable test utilities:
+
 - `waitForAppReady()` - Wait for app initialization
 - `generateScenario()` - Start a new scenario
 - `endRound()` - End current round
@@ -87,7 +104,9 @@ Reusable test utilities:
 ### 3. CI/CD
 
 #### `.github/workflows/test.yml`
+
 GitHub Actions workflow that:
+
 - Runs on push to main/develop branches
 - Runs on pull requests
 - Tests on Ubuntu, Windows, and macOS
@@ -100,7 +119,9 @@ GitHub Actions workflow that:
 ### 4. Documentation
 
 #### `PLAYWRIGHT_TESTING.md`
+
 Comprehensive testing guide covering:
+
 - Quick start instructions
 - Test structure and organization
 - Test categories and coverage
@@ -116,13 +137,16 @@ Comprehensive testing guide covering:
 - Resources
 
 #### `README.md` - Updated
+
 Added testing section with:
+
 - Quick start commands
 - Test coverage summary
 - Link to detailed documentation
 - CI/CD information
 
 #### `TEST_SETUP_SUMMARY.md` (this file)
+
 Summary of all testing enhancements.
 
 ## File Structure
@@ -151,6 +175,7 @@ necromunda_terminal_map/
 ### Automatic Background Server
 
 The Playwright configuration automatically:
+
 1. Starts the Deno server before tests
 2. Waits for server to be ready (http://localhost:8000)
 3. Runs all tests
@@ -161,18 +186,21 @@ No manual server management needed!
 ### Cross-Browser Testing
 
 Tests run on:
+
 - **Desktop**: Chrome, Firefox, Safari
 - **Mobile**: Pixel 5 (Chrome), iPhone 12 (Safari)
 
 ### Parallel Execution
 
 Tests run in parallel for speed:
+
 - Local: Uses all CPU cores
 - CI: Sequential for stability
 
 ### Rich Debugging
 
 Multiple debugging modes:
+
 - Headless (default, fast)
 - Headed (see browser)
 - UI mode (step-by-step debugging)
@@ -181,6 +209,7 @@ Multiple debugging modes:
 ### Comprehensive Coverage
 
 Current test coverage:
+
 - ✅ Scenario loading and generation
 - ✅ Unit selection and movement
 - ✅ Bomb mechanics (plant, disarm, detonate)
@@ -296,6 +325,7 @@ deno run -A npm:playwright show-report
 ## Conclusion
 
 The Necromunda Tactical Auspex now has a robust testing infrastructure that:
+
 - Automatically starts the Deno server
 - Tests across multiple browsers
 - Runs in parallel for speed

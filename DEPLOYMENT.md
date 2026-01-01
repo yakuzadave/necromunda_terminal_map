@@ -23,6 +23,7 @@ Val Town allows you to deploy this as a single HTTP handler.
 6. **Done!** Your app is live.
 
 ### Val Town Features:
+
 - ✅ Instant deployment
 - ✅ HTTPS by default
 - ✅ No configuration needed
@@ -70,6 +71,7 @@ Deno Deploy is optimized for TypeScript and perfect for this project.
    ```
 
 ### Deno Deploy Features:
+
 - ✅ 1 million requests/month free
 - ✅ Edge network (fast worldwide)
 - ✅ Auto HTTPS
@@ -81,6 +83,7 @@ Deno Deploy is optimized for TypeScript and perfect for this project.
 Host the original HTML/CSS/JS files anywhere.
 
 ### Suitable Services:
+
 - **Netlify Drop**: Drag & drop folder
 - **Vercel**: Connect GitHub repo
 - **GitHub Pages**: Free hosting from repo
@@ -88,6 +91,7 @@ Host the original HTML/CSS/JS files anywhere.
 - **Surge**: CLI-based deployment
 
 ### Files to Deploy:
+
 ```
 necromunda_terminal_map/
 ├── index.html
@@ -117,6 +121,7 @@ necromunda_terminal_map/
 Run your own container with Deno.
 
 ### Dockerfile:
+
 ```dockerfile
 FROM denoland/deno:latest
 
@@ -132,6 +137,7 @@ CMD ["deno", "run", "--allow-net", "--allow-read", "server.ts"]
 ```
 
 ### Build and Run:
+
 ```bash
 docker build -t necromunda-auspex .
 docker run -p 8000:8000 necromunda-auspex
@@ -144,27 +150,32 @@ No environment variables required! Everything runs client-side.
 ## Custom Domain
 
 ### Val Town (Paid):
+
 - Go to Val settings
 - Add custom domain
 - Update DNS CNAME
 
 ### Deno Deploy:
+
 - Project settings → Domains
 - Add domain
 - Configure DNS
 
 ### Static Hosts:
+
 - Most provide custom domain in settings
 - Update DNS to point to their servers
 
 ## Performance Tips
 
 ### For Val Town/Deno:
+
 - Already optimized
 - Uses HTTP/2 by default
 - Edge caching automatic
 
 ### For Static Hosting:
+
 1. **Enable Compression**: gzip/brotli (usually automatic)
 2. **Set Cache Headers**: CSS/JS can be cached long-term
 3. **Use CDN**: Cloudflare or similar
@@ -172,6 +183,7 @@ No environment variables required! Everything runs client-side.
 ## Monitoring
 
 ### Check if deployed correctly:
+
 1. Open URL in browser
 2. Should see green CRT terminal
 3. Click "New Battle" - map should generate
@@ -180,32 +192,36 @@ No environment variables required! Everything runs client-side.
 ### Common Issues:
 
 **"mapSystem is not defined"**
+
 - Files not loading in correct order
 - Check that `scenarios.js` loads before `app.js`
 
 **"SCENARIOS is not defined"**
+
 - `scenarios.js` not loading
 - Check file path in HTML
 
 **Map doesn't generate**
+
 - JavaScript error - check console
 - Check `window.onload` event fired
 
 **Styles look wrong**
+
 - CSS not loading
 - Check `styles.css` path
 - Clear browser cache
 
 ## Cost Comparison
 
-| Platform | Free Tier | Custom Domain | Build Time |
-|----------|-----------|---------------|------------|
-| **Val Town** | 10 vals | Paid plan | Instant |
-| **Deno Deploy** | 1M req/mo | Free | < 1 min |
-| **Netlify** | 100 GB/mo | Free | < 1 min |
-| **Vercel** | Unlimited | Free | 1-2 min |
-| **GitHub Pages** | 1 GB storage | Free | 2-5 min |
-| **Surge** | Unlimited | Paid | Instant |
+| Platform         | Free Tier    | Custom Domain | Build Time |
+| ---------------- | ------------ | ------------- | ---------- |
+| **Val Town**     | 10 vals      | Paid plan     | Instant    |
+| **Deno Deploy**  | 1M req/mo    | Free          | < 1 min    |
+| **Netlify**      | 100 GB/mo    | Free          | < 1 min    |
+| **Vercel**       | Unlimited    | Free          | 1-2 min    |
+| **GitHub Pages** | 1 GB storage | Free          | 2-5 min    |
+| **Surge**        | Unlimited    | Paid          | Instant    |
 
 ## Recommended: Val Town
 
@@ -231,16 +247,19 @@ For the easiest deployment with zero configuration:
 ## Troubleshooting Deployment
 
 ### Val Town Issues:
+
 - Check handler exports `default function`
 - Verify it returns `Response` object
 - Check Val Town console for errors
 
 ### Deno Deploy Issues:
+
 - Ensure `server.ts` is in project root
 - Check file permissions
 - Verify import paths use `.ts` extension
 
 ### Static Hosting Issues:
+
 - Ensure all 4 files are uploaded
 - Check file names match exactly (case-sensitive)
 - Verify MIME types are correct
@@ -248,6 +267,7 @@ For the easiest deployment with zero configuration:
 ## Support
 
 For deployment help:
+
 - Val Town: [docs.val.town](https://docs.val.town)
 - Deno: [deno.land/manual](https://deno.land/manual)
 - Issues: [GitHub Issues](your-repo/issues)
@@ -255,6 +275,7 @@ For deployment help:
 ---
 
 **Quick Deploy Checklist:**
+
 - [ ] Choose platform (Val Town recommended)
 - [ ] Copy/upload appropriate files
 - [ ] Test in browser

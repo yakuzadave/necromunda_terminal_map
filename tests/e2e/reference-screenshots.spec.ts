@@ -1,6 +1,6 @@
-import { test, expect } from '@playwright/test';
-import * as fs from 'fs';
-import * as path from 'path';
+import { expect, test } from "@playwright/test";
+import * as fs from "fs";
+import * as path from "path";
 
 /**
  * Reference Screenshots Generator
@@ -11,19 +11,23 @@ import * as path from 'path';
  */
 
 const scenarios = [
-  { value: 'bushwhack', name: 'Bushwhack' },
-  { value: 'scrag', name: 'Scrag' },
-  { value: 'mayhem', name: 'Mayhem' },
-  { value: 'manufactorumRaid', name: 'Manufactorum Raid' },
-  { value: 'conveyer', name: 'The Conveyer' },
-  { value: 'fungalHorror', name: 'Fungal Horror' },
-  { value: 'tollBridge', name: 'Toll Bridge' },
+  { value: "bushwhack", name: "Bushwhack" },
+  { value: "scrag", name: "Scrag" },
+  { value: "mayhem", name: "Mayhem" },
+  { value: "manufactorumRaid", name: "Manufactorum Raid" },
+  { value: "conveyer", name: "The Conveyer" },
+  { value: "fungalHorror", name: "Fungal Horror" },
+  { value: "tollBridge", name: "Toll Bridge" },
 ];
 
-test.describe('Reference Screenshots', () => {
+test.describe("Reference Screenshots", () => {
   // Ensure screenshot directory exists
   test.beforeAll(async () => {
-    const screenshotDir = path.join(process.cwd(), 'test-results', 'screenshots');
+    const screenshotDir = path.join(
+      process.cwd(),
+      "test-results",
+      "screenshots",
+    );
     if (!fs.existsSync(screenshotDir)) {
       fs.mkdirSync(screenshotDir, { recursive: true });
     }
@@ -32,14 +36,14 @@ test.describe('Reference Screenshots', () => {
   for (const scenario of scenarios) {
     test(`capture ${scenario.name}`, async ({ page }) => {
       // 1. Load Page
-      await page.goto('/');
-      await page.waitForSelector('#battle-map', { timeout: 10000 });
+      await page.goto("/");
+      await page.waitForSelector("#battle-map", { timeout: 10000 });
       await page.waitForTimeout(1000); // Wait for initial auto-gen to settle
 
       // 2. Select Scenario
-      await page.selectOption('#scenario-select', scenario.value);
+      await page.selectOption("#scenario-select", scenario.value);
       await page.click('button:has-text("New Battle")');
-      
+
       // Wait for map generation and animations
       await page.waitForTimeout(2000);
 

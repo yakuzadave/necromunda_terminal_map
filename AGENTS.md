@@ -1,11 +1,15 @@
 # Agent Context & Instructions
 
 ## Project Overview
-**Necromunda Tactical Auspex** - A retro CRT-style tactical map system for Necromunda tabletop scenarios with procedural Zone Mortalis generation and multiple scenario support.
+
+**Necromunda Tactical Auspex** - A retro CRT-style tactical map system for
+Necromunda tabletop scenarios with procedural Zone Mortalis generation and
+multiple scenario support.
 
 ## Current State (Updated: 2025-12-03)
 
 ### Technology Stack
+
 - **Frontend**: Vanilla JavaScript (ES6+)
 - **Styling**: Pure CSS3 with custom CRT effects
 - **No Dependencies**: No frameworks, libraries, or build tools
@@ -14,18 +18,23 @@
 ### Architecture
 
 #### Core Classes
+
 1. **TacticalMap** (`app.js`)
    - Main game engine
    - Handles map generation, rendering, and game state
-   - Properties: `width`, `height`, `mapData[]`, `bombs[]`, `currentScenario`, `round`
-   - Key methods: `generate()`, `render()`, `deployUnits()`, `endRound()`, `detonateBomb()`
+   - Properties: `width`, `height`, `mapData[]`, `bombs[]`, `currentScenario`,
+     `round`
+   - Key methods: `generate()`, `render()`, `deployUnits()`, `endRound()`,
+     `detonateBomb()`
 
 2. **SCENARIOS** (`scenarios.js`)
    - Object containing all scenario definitions
-   - Each scenario has: `name`, `description`, `attacker`, `defender`, `setup()`, `endPhase()`, `checkVictory()`
+   - Each scenario has: `name`, `description`, `attacker`, `defender`,
+     `setup()`, `endPhase()`, `checkVictory()`
    - Currently implemented: bushwhack, scrag, mayhem, manufactorumRaid
 
 ### File Structure
+
 ```
 necromunda_terminal_map/
 ├── index.html          # UI structure, includes both JS files
@@ -41,6 +50,7 @@ necromunda_terminal_map/
 ### Data Structures
 
 #### Map Cell Object
+
 ```javascript
 {
     type: 'floor' | 'wall' | 'unit' | 'rubble' | 'hazard' | 'objective',
@@ -54,6 +64,7 @@ necromunda_terminal_map/
 ```
 
 #### Bomb Object
+
 ```javascript
 {
     x: number,
@@ -66,6 +77,7 @@ necromunda_terminal_map/
 ```
 
 #### Scenario Object Structure
+
 ```javascript
 {
     name: string,
@@ -123,6 +135,7 @@ necromunda_terminal_map/
 ### Code Style
 
 #### JavaScript
+
 ```javascript
 // Use descriptive names
 getUnitsByType(char) { }  // Good
@@ -142,28 +155,36 @@ detonateBombAndCheckVictory(bombIndex) { }
 ```
 
 #### CSS
+
 ```css
 /* Use CSS custom properties for theming */
 :root {
-    --phosphor-primary: #33ff00;
-    --phosphor-dim: #1a8000;
+  --phosphor-primary: #33ff00;
+  --phosphor-dim: #1a8000;
 }
 
 /* Descriptive class names */
-.unit-attacker { }  /* Good */
-.red { }            /* Bad */
+.unit-attacker {} /* Good */
+.red {} /* Bad */
 
 /* Keep animations subtle */
 @keyframes pulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 1; }
-    100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 ```
 
 ### Common Tasks
 
 #### Adding a New Scenario Type
+
 1. Define scenario object in `scenarios.js`
 2. Implement `setup(map)` callback
 3. Implement `endPhase(map)` if needed
@@ -172,12 +193,14 @@ detonateBombAndCheckVictory(bombIndex) { }
 6. Test with `mapSystem.generate('yourScenarioKey')`
 
 #### Adding Interactive Objects
+
 1. Place object in `mapData` during `setup()`
 2. Handle click in `handleCellClick(x, y)`
 3. Update `showInfo()` to display object details
 4. Add interaction feedback via `this.log()`
 
 #### Modifying Map Generation
+
 1. Edit terrain generation loop in `generate()`
 2. Adjust density constants in constructor
 3. Test with multiple generations
@@ -186,6 +209,7 @@ detonateBombAndCheckVictory(bombIndex) { }
 ## Testing Checklist
 
 When making changes, verify:
+
 - [ ] Map generates without errors
 - [ ] Units can be selected and moved
 - [ ] Scenario-specific objectives appear
@@ -206,18 +230,21 @@ When making changes, verify:
 ## Future Enhancement Ideas
 
 ### High Priority
+
 - Save/load game states (localStorage)
 - Full combat system with hit rolls and injuries
 - Fighter equipment and loadouts
 - Line of sight calculations
 
 ### Medium Priority
+
 - Additional scenarios from official books
 - Customizable map sizes
 - Sound effects (optional, retro beeps)
 - Campaign progression tracking
 
 ### Low Priority
+
 - Sector Mechanicus terrain type
 - Network multiplayer
 - Mobile touch controls optimization
@@ -228,21 +255,25 @@ When making changes, verify:
 ### Common Issues
 
 **Map doesn't generate**
+
 - Check browser console for errors
 - Verify `scenarios.js` is loaded before `app.js`
 - Ensure SCENARIOS object is defined
 
 **Bombs don't work**
+
 - Must be in Manufactorum Raid scenario
 - Unit must be adjacent (distance ≤ 1.5)
 - Check bomb state (planted, armed) in Cogitator Feed
 
 **Victory conditions don't trigger**
+
 - Call `mapSystem.endRound()` after each round
 - Verify scenario has `checkVictory()` implemented
 - Check console for victory condition logs
 
 **Styling looks wrong**
+
 - Clear browser cache
 - Check CSS is loading (`styles.css`)
 - Verify CSS custom properties are supported
@@ -250,12 +281,14 @@ When making changes, verify:
 ## Contributing Guidelines
 
 ### Before Making Changes
+
 1. Read this document completely
 2. Review existing code structure
 3. Test current functionality
 4. Plan changes to minimize impact
 
 ### When Making Changes
+
 1. Follow existing code style
 2. Keep commits focused and small
 3. Update documentation (README.md, this file)
@@ -263,6 +296,7 @@ When making changes, verify:
 5. Check console for errors/warnings
 
 ### After Making Changes
+
 1. Verify all scenarios still work
 2. Update QUICKSTART.md if UI changed
 3. Add to Future Enhancements if incomplete
@@ -273,40 +307,47 @@ When making changes, verify:
 ### TacticalMap Methods
 
 #### Core Methods
+
 - `generate(scenarioKey)` - Generate new battlefield with scenario
 - `render()` - Re-render the map display
 - `endRound()` - Process end-of-round effects
 - `deployUnits()` - Place attacker and defender units
 
 #### Unit Management
+
 - `getUnitsByType(char)` - Get all units of type ('M' or 'G')
 - `placeEntity(x, y, char, css, desc)` - Place unit on map
 - `moveUnit(fx, fy, tx, ty)` - Move unit from → to
 - `isValidSpawn(x, y)` - Check if location can spawn unit
 
 #### Bomb Mechanics (Manufactorum Raid)
+
 - `detonateBomb(bombIndex)` - Explode bomb at index
 - `checkVictoryConditions()` - Check and log victory status
 
 #### UI & Feedback
+
 - `log(text)` - Add message to Cogitator Feed (prepends)
 - `updateLog(html)` - Replace Cogitator Feed content
 - `showInfo(data, x, y)` - Display cell info on hover
 - `toggleOverlay()` - Toggle visual mode
 
 #### Utility
+
 - `rand(min, max)` - Random integer between min and max (inclusive)
 - `getWallChar(x, y)` - Calculate box-drawing character for wall
 - `smoothMap()` - Apply cellular automata to open corridors
 - `isSafeFromAttackers(x, y)` - Check if spawn location safe (10+ cells away)
 
 ### Global Functions (index.html)
+
 - `startNewBattle()` - Read scenario dropdown and generate map
 - `mapSystem` - Global TacticalMap instance (50x25)
 
 ## Version History
 
 ### v1.0 (2025-12-03)
+
 - Initial modular structure (split HTML/CSS/JS)
 - Scenario system with 4 scenarios
 - Manufactorum Raid fully implemented
@@ -317,15 +358,19 @@ When making changes, verify:
 ## Contact & Resources
 
 ### Official Necromunda Resources
+
 - Necromunda Rulebook
 - The Book of Peril
 - Games Workshop Official Site
 
 ### Development Resources
+
 - MDN Web Docs (JavaScript/CSS reference)
 - Box Drawing Characters: Unicode U+2500 to U+257F
 - CSS Grid Layout Guide
 
 ---
 
-**Note for AI Agents**: This project uses no build tools or package managers. All code runs directly in the browser. When making suggestions, keep solutions vanilla JS/CSS compatible.
+**Note for AI Agents**: This project uses no build tools or package managers.
+All code runs directly in the browser. When making suggestions, keep solutions
+vanilla JS/CSS compatible.

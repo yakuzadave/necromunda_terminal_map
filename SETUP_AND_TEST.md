@@ -7,16 +7,19 @@
 Deno is required to run the server and tests.
 
 **Windows (PowerShell):**
+
 ```powershell
 irm https://deno.land/install.ps1 | iex
 ```
 
 **macOS/Linux:**
+
 ```bash
 curl -fsSL https://deno.land/install.sh | sh
 ```
 
 **Verify installation:**
+
 ```bash
 deno --version
 ```
@@ -37,7 +40,8 @@ This downloads Chromium, Firefox, and WebKit browsers for testing (~500MB).
 deno task start
 ```
 
-Open http://localhost:8000 in your browser. You should see the Necromunda Tactical Auspex.
+Open http://localhost:8000 in your browser. You should see the Necromunda
+Tactical Auspex.
 
 Press `Ctrl+C` to stop the server.
 
@@ -94,22 +98,26 @@ deno run -A npm:playwright show-report
 ## Test Modes
 
 ### Headless Mode (Default)
+
 - Fastest execution
 - No browser window visible
 - Best for CI/CD and quick checks
 
 ### Headed Mode
+
 - Browser window visible
 - See what's happening
 - Good for understanding test flow
 
 ### UI Mode (Interactive)
+
 - Step through tests
 - Pause and inspect
 - Time-travel debugging
 - Best for test development
 
 ### Debug Mode
+
 - Playwright Inspector
 - Set breakpoints
 - Execute step-by-step
@@ -122,6 +130,7 @@ deno run -A npm:playwright show-report
 **Issue:** `deno: command not found`
 
 **Solution:**
+
 1. Make sure Deno is installed (see Prerequisites)
 2. Restart your terminal/PowerShell
 3. Add Deno to PATH manually:
@@ -133,6 +142,7 @@ deno run -A npm:playwright show-report
 **Issue:** Server fails to start because port is busy
 
 **Solution:**
+
 ```bash
 # Windows
 netstat -ano | findstr :8000
@@ -149,6 +159,7 @@ Or change the port in `server.ts` and `playwright.config.ts`.
 **Issue:** Tests fail with browser not found error
 
 **Solution:**
+
 ```bash
 deno task playwright:install
 
@@ -175,6 +186,7 @@ Some tests may be flaky on first run. Try:
 **Issue:** Deno permission denied errors
 
 **Solution:** Ensure commands include necessary flags:
+
 - `--allow-net` for network access
 - `--allow-read` for reading files
 - `-A` for all permissions (testing only)
@@ -182,6 +194,7 @@ Some tests may be flaky on first run. Try:
 ## Understanding Test Results
 
 ### Success
+
 ```
 ✓ tests/e2e/scenario-loading.spec.ts
   ✓ should load the page (1s)
@@ -191,6 +204,7 @@ Some tests may be flaky on first run. Try:
 ```
 
 ### Failure
+
 ```
 ✗ tests/e2e/scenario-loading.spec.ts
   ✗ should load the page (1s)
@@ -215,6 +229,7 @@ deno run -A npm:playwright show-report
 ## CI/CD
 
 Tests run automatically via GitHub Actions on:
+
 - Push to main/develop
 - Pull requests
 
@@ -242,6 +257,7 @@ Current test suite covers:
 ### Coverage Report
 
 To see detailed coverage:
+
 ```bash
 deno run -A npm:playwright test --reporter=html
 deno run -A npm:playwright show-report
@@ -258,6 +274,7 @@ deno run -A npm:playwright show-report
 ### Optimization
 
 Speed up tests:
+
 ```bash
 # Run specific test
 deno run -A npm:playwright test -g "should load the page"
@@ -272,6 +289,7 @@ deno run -A npm:playwright test --workers=4
 ## Best Practices
 
 ### Before Committing
+
 ```bash
 # Run full test suite
 deno task test:all
@@ -284,6 +302,7 @@ deno lint
 ```
 
 ### During Development
+
 ```bash
 # Use UI mode for test development
 deno task test:e2e:ui
@@ -293,6 +312,7 @@ deno task test:e2e:headed
 ```
 
 ### When Tests Fail
+
 1. Read error message carefully
 2. Check screenshots in `test-results/`
 3. Run in headed mode to see what's happening
