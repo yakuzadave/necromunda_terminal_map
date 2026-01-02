@@ -17,6 +17,12 @@
       <div class="crt-overlay"></div>
       <div class="crt-glow"></div>
       <div class="scan-bar"></div>
+      
+      <div class="zoom-controls">
+          <button onclick="zoomIn()" title="Zoom In">+</button>
+          <button onclick="zoomOut()" title="Zoom Out">-</button>
+          <button onclick="resetView()" title="Reset View">⟲</button>
+      </div>
 
       <header>
         <div>
@@ -109,9 +115,32 @@
       import { mapSystem, TacticalMap } from "./app.js";
 
       // Expose to window for inline scripts and onclick handlers
-      window.SCENARIOS = SCENARIOS;
-      window.mapSystem = mapSystem;
-    </script>
+    window.SCENARIOS = SCENARIOS;
+    window.mapSystem = mapSystem;
+    
+    // Zoom Controls
+    window.zoomIn = () => {
+        if (mapSystem.currentZoom < 1.5) {
+            mapSystem.currentZoom += 0.1;
+            applyZoom();
+        }
+    };
+
+    window.zoomOut = () => {
+        if (mapSystem.currentZoom > 0.6) {
+            mapSystem.currentZoom -= 0.1;
+            applyZoom();
+        }
+    };
+
+    function applyZoom() {
+        const container = document.querySelector('.crt-container');
+        if (container) {
+            container.style.transform = `scale(${mapSystem.currentZoom})`;
+            // Adjust margin to handle scale centering if needed, but transform-origin: center top helps
+        }
+    }
+</script>
     <script>
       function startNewBattle() {
         const select = document.getElementById("scenario-select");

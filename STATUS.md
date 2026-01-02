@@ -6,6 +6,15 @@
 **Phase:** Maintenance / Ready for Feature
 
 ### Recent Changes
+- **UI Polish & Dynamic Mapping (BATCH-006) Complete:**
+  - Added Drag/Panning logic for zoomed maps using CSS transforms.
+  - Implemented "Reset View" button.
+  - Enhanced Cell Inspector with rich HTML (Unit Status, Loadouts).
+  - Verified layout responsiveness and interactions.
+
+- **Layout & Zoom (BATCH-005) Complete:**
+  - Fixed clipping; added Zoom controls.
+
 - **Sector Mechanicus Map (BATCH-004) Complete:**
   - Implemented `src/map-generator-sector-mechanicus.js` ("Industrial Sprawl" style).
   - Added UI Selector (ZM / SM) in `index.html`.

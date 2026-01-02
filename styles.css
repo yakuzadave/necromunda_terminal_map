@@ -22,9 +22,9 @@ body {
 /* CRT Monitor Container */
 .crt-container {
   position: relative;
-  width: 95vw;
-  height: 90vh;
-  max-width: 1200px;
+  width: 98vw;
+  height: 95vh;
+  max-width: 1600px;
   background-color: var(--bg-color);
   border-radius: 20px;
   box-shadow:
@@ -32,9 +32,11 @@ body {
     inset 0 0 100px rgba(0, 0, 0, 0.9);
   border: 2px solid #333;
   overflow: hidden;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease; /* Prepared for zoom */
+  transform-origin: center top;
 }
 
 /* Screen Effects */
@@ -437,3 +439,91 @@ button:hover, select.scenario-dropdown:hover {
     height: 50vh;
   }
 }
+
+/* Zoom Controls */
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    gap: 5px;
+}
+
+.zoom-controls button {
+    background: rgba(0, 20, 0, 0.8);
+    border: 1px solid var(--phosphor-primary);
+    color: var(--phosphor-primary);
+    width: 30px;
+    height: 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.zoom-controls button:hover {
+    background: var(--phosphor-primary);
+    color: #000;
+}
+
+/* Draggable Map */
+.map-frame {
+    cursor: grab;
+}
+
+.map-frame:active {
+    cursor: grabbing;
+}
+
+.crt-container {
+    will-change: transform; /* Optimize for drag/zoom */
+}
+
+/* Enhanced Inspector */
+.info-block {
+    margin-bottom: 8px;
+    border-left: 2px solid var(--phosphor-dim);
+    padding-left: 8px;
+}
+
+.info-title {
+    font-weight: bold;
+    color: var(--phosphor-bright);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.stat-label {
+    color: var(--phosphor-dim);
+}
+
+.stat-val {
+    color: var(--phosphor-primary);
+    font-weight: bold;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0 4px;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.status-active { background: var(--phosphor-primary); color: #000; }
+.status-idle { border: 1px solid var(--phosphor-dim); color: var(--phosphor-dim); }
+.status-danger { background: #ff3333; color: #000; }
+.status-warn { background: #ffcc00; color: #000; }
+

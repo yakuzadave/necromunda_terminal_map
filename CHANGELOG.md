@@ -1,6 +1,15 @@
 # CHANGELOG
 
 ## [Unreleased]
+### [BATCH-006] UI Polish & Dynamic Mapping
+- **Added:** Map Panning (drag-to-scroll) functionality.
+- **Added:** Enhanced "Cogitator Feed" Inspector with rich HTML output.
+- **Added:** "Reset View" button to zoom controls.
+- **Changed:** Refactored `showInfo` in `app.js` to support HTML.
+
+### [BATCH-005] Layout & Zoom
+- **Added:** Zoom controls (`+` / `-`) and responsive layout fixes.
+
 ### [BATCH-004] Sector Mechanicus Map
 - **Added:** `src/map-generator-sector-mechanicus.js`.
 - **Added:** UI dropdown for selecting Map Type (Zone Mortalis / Sector Mechanicus).

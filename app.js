@@ -9,8 +9,15 @@ export class TacticalMap {
     this.width = width;
     this.height = height;
     this.mapData = [];
-
+    this.currentZoom = 1.0;
     
+    // Drag/Pan State
+    this.isDragging = false;
+    this.startX = 0;
+    this.startY = 0;
+    this.translateX = 0;
+    this.translateY = 0;
+
     if (typeof document !== "undefined") {
       this.container = document.getElementById("battle-map");
       if (!this.container) {
@@ -116,6 +123,12 @@ export class TacticalMap {
     this.round = 0;
     if (this.container.innerHTML !== undefined) {
       this.container.innerHTML = "";
+    }
+    
+    // Ensure drag is initialized once
+    if (!this.dragInitialized) {
+        this.initDrag();
+        this.dragInitialized = true;
     }
 
     // Load Map Type from UI
@@ -981,41 +994,46 @@ export class TacticalMap {
   }
 
   showInfo(data, x, y) {
-    let info = `GRID [${x},${y}]<br>`;
-    info += `TYPE: ${data.desc}<br>`;
+    let html = `<div class="info-block">
+        <div class="info-title">GRID [${x},${y}]</div>`;
+        html += `<div class="stat-row"><span class="stat-label">TYPE</span><span class="stat-val">${data.desc}</span></div>`;
+    
     if (this.auspexMode) {
-      info += `VISIBILITY: ${data.visible ? "CLEAR" : "SHROUDED"}<br>`;
+      const vis = data.visible ? "CLEAR" : "SHROUDED";
+      const color = data.visible ? "#adff2f" : "#555";
+      html += `<div class="stat-row"><span class="stat-label">AUSPEX</span><span class="stat-val" style="color:${color}">${vis}</span></div>`;
     }
-
+    
     if (data.type === "unit") {
-      const status = this.selectedUnit && this.selectedUnit.x === x &&
-          this.selectedUnit.y === y
-        ? "ACTIVE"
-        : "IDLE";
-      info += `STATUS: ${status}<br>`;
-      info += `LOADOUT: ${this.getRandomWeapon(data.char)}`;
+      const isSelected = this.selectedUnit && this.selectedUnit.x === x && this.selectedUnit.y === y;
+      const statusClass = isSelected ? "status-active" : "status-idle";
+      const statusText = isSelected ? "ACTIVE" : "IDLE";
+      
+      html += `<div class="stat-row"><span class="stat-label">UNIT</span><span class="stat-val">${data.char}</span></div>`;
+      html += `<div class="status-badge ${statusClass}">${statusText}</div>`;
+      html += `<div class="stat-row" style="margin-top:4px"><span class="stat-label">LOADOUT</span></div>`;
+      html += `<div style="font-size:0.8rem; color:#aaa">${this.getRandomWeapon(data.char)}</div>`;
     } else if (data.type === "hazard") {
-      info += `DANGER LEVEL: CRITICAL<br>`;
+        html += `<div class="status-badge status-danger">HAZARD LEVEL 5</div>`;
     } else if (data.type === "wall") {
-      info += `MATERIAL: PLASTEEL<br>`;
-    } else if (
-      data.type === "objective" && typeof data.bombIndex !== "undefined"
-    ) {
-      const bomb = this.bombs[data.bombIndex];
-      if (bomb.exploded) {
-        info += `STATUS: DETONATED<br>`;
-      } else if (bomb.planted && bomb.armed) {
-        info += `STATUS: ARMED<br>COUNTER: ${bomb.counter}<br>`;
-        info += `DETONATION: ${7 - bomb.counter}+ to explode<br>`;
-      } else if (bomb.planted && !bomb.armed) {
-        info += `STATUS: DISARMED<br>`;
-      } else {
-        info += `STATUS: Not planted<br>`;
-        info += `ACTION: Attacker can plant (Double)`;
-      }
+        html += `<div class="status-badge status-idle">STRUCTURAL (T7 W4)</div>`;
+    } else if (data.type === "objective" && typeof data.bombIndex !== "undefined") {
+       const bomb = this.bombs[data.bombIndex];
+       if (bomb.exploded) {
+           html += `<div class="status-badge status-danger">DETONATED</div>`;
+       } else if (bomb.planted && bomb.armed) {
+           html += `<div class="status-badge status-warn">ARMED (${bomb.counter})</div>`;
+           html += `<div style="font-size:0.8rem; color:#f00">Detonates on ${7-bomb.counter}+</div>`;
+       } else if (bomb.planted && !bomb.armed) {
+           html += `<div class="status-badge status-idle">PLANTED (DISARMED)</div>`;
+       } else {
+            html += `<div class="stat-row"><span class="stat-label">STATUS</span><span class="stat-val">INACTIVE</span></div>`;
+            html += `<div style="font-size:0.8rem; color:#adff2f">Action: Plant Bomb (Double)</div>`;
+       }
     }
-
-    this.updateLog(info);
+    
+    html += `</div>`; // Close info-block
+    this.updateLog(html);
   }
 
   getRandomWeapon(char) {
@@ -1486,6 +1504,59 @@ export class TacticalMap {
 
     this.render();
   }
+  // Drag/Pan Logic
+  initDrag() {
+    if (typeof document === "undefined") return;
+
+    const frame = document.querySelector(".map-frame");
+    if (!frame) return;
+
+    frame.addEventListener("mousedown", (e) => {
+      this.isDragging = true;
+      this.startX = e.clientX - this.translateX;
+      this.startY = e.clientY - this.translateY;
+      frame.style.cursor = "grabbing";
+    });
+
+    document.addEventListener("mousemove", (e) => {
+      if (!this.isDragging) return;
+      e.preventDefault();
+      this.translateX = e.clientX - this.startX;
+      this.translateY = e.clientY - this.startY;
+      this.applyTransform();
+    });
+
+    document.addEventListener("mouseup", () => {
+      if (this.isDragging) {
+        this.isDragging = false;
+        frame.style.cursor = "grab";
+      }
+    });
+  }
+
+  applyTransform() {
+    const container = document.querySelector(".crt-container");
+    if (container) {
+      container.style.transform =
+        `translate(${this.translateX}px, ${this.translateY}px) scale(${this.currentZoom})`;
+    }
+  }
+
+  resetView() {
+    this.currentZoom = 1.0;
+    this.translateX = 0;
+    this.translateY = 0;
+    this.applyTransform();
+  }
+}
+
+// Global hook for reset
+if (typeof window !== "undefined") {
+    window.resetView = () => {
+        if (window.mapSystem) {
+            window.mapSystem.resetView();
+        }
+    }
 }
 export const mapSystem = new TacticalMap(50, 25);
 if (typeof window !== "undefined") {
